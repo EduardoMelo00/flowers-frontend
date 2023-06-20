@@ -16,7 +16,7 @@ const ChangePassword = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:3001/api/auth/change-password', {
+      const response = await axios.post('https://flowers-node-backend-2c4af429ac26.herokuapp.com/api/auth/change-password', {
         email,
         confirmPassword,
         newPassword,

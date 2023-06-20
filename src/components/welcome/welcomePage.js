@@ -15,7 +15,7 @@ function WelcomePage() {
     useEffect(() => {
       const checkToken = async () => {
         try {
-          const response = await fetch('http://localhost:3001/api/auth/check-token', {
+          const response = await fetch('https://flowers-node-backend-2c4af429ac26.herokuapp.com/api/auth/check-token', {
             method: 'GET',
             credentials: 'include', // include, *same-origin, omit
           });
