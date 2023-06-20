@@ -15,7 +15,7 @@ function LoginPage() {
     event.preventDefault();
 
     try {
-      const response = await axios.post('https://flowers-node-backend-2c4af429ac26.herokuapp.com/api/auth/login', { email, password });
+      const response = await axios.post('/api/auth/login', { email, password });
 
       if (response.data.firstLogin) {
         // Redirect to change password page
