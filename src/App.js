@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import LoginPage from './components/loginPage/loginPage.js';
+import WelcomePage from './components/welcome/welcomePage.js'; // You'll create this component in the next step
+import VideoPage from './components/videoPage/videoPage.js';
+import ChangePassword from './components/changePassword/changePassword.js';
+
+import PrivateRoute from './components/privateRoutes/privateRoute.js';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+      <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/welcome" element={<WelcomePage />} />
+        <Route path="/video/:id" element={<VideoPage />} />
+        <Route path="/change-password" element={<ChangePassword/>} />
+      </Routes>
+    </Router>
   );
 }
 

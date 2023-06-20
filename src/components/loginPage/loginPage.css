@@ -1,0 +1,75 @@
+body {
+  background: url('background.jpeg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: white;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+}
+
+.logo-container {
+  position: absolute;
+  bottom: 450px;
+  left: 2px;
+}
+
+.logo {
+  width: 500px;  /* Increase the width */
+  height: auto;  /* Make sure height scales proportionally */
+}
+
+.login-container {
+  width: 300px;
+  padding: 16px;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 4px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  background-color: #e50914;
+  cursor: pointer;
+}
+
+.help {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.help a {
+  color: white;
+  text-decoration: none;
+}

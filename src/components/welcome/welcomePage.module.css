@@ -1,0 +1,156 @@
+
+
+.top-nav {
+  background: rgba(255,255,255,0);
+  color: #141414;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 50px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo-container {
+  display: flex;
+}
+
+.logo {
+  width: 150px;  
+  height: auto;  
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  margin-left: -30px;
+}
+
+.nav-links li {
+  margin-left: 30px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+}
+
+.featured-video {
+  position: relative;
+  height: 140vh;  /* This will take the full height of the viewport */
+  width: 185vh;
+  overflow: hidden;
+}
+
+.video-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-container {
+  position: relative;
+  top: -170px; /* Adjust as needed to overlap the video */
+  margin-bottom: 100px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.video-row {
+  display: flex;
+  overflow-x: auto;
+  padding: 10px 0;
+  scroll-snap-type: x mandatory; /* Added for carousel effect */
+}
+
+.video-thumbnail {
+  flex: 0 0 auto;
+  width: 300px;
+  height: 170px;
+  margin-right: 10px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: transform 0.2s ease-in-out;
+  scroll-snap-align: start; /* Added for carousel effect */
+}
+
+.video-thumbnail:hover {
+  transform: scale(1.08);
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.arrow-left {
+  left: 15px;
+}
+
+.arrow-right {
+  right: 15px;
+}
+
+.video-row::-webkit-scrollbar {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .logo {
+    width: 120px;  
+  }
+
+  .nav-links li {
+    margin-left: 20px;
+  }
+
+  .featured-video {
+    height: 70vh;  
+  }
+
+  .gallery-container {
+    width: 95%;
+  }
+
+  .video-thumbnail {
+    width: 250px;
+    height: 140px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .logo {
+    width: 90px;  
+  }
+
+  .nav-links li {
+    margin-left: 15px;
+  }
+
+  .featured-video {
+    height: 50vh;  
+  }
+
+  .gallery-container {
+    width: 95%;
+  }
+
+  .video-thumbnail {
+    width: 200px;
+    height: 110px;
+  }
+}

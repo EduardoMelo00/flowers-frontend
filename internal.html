@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="internal.css">
+</head>
+<body>
+
+    
+
+    <nav class="top-nav">
+        <div class="logo-container">
+            <img src="logo.png" class="logo" alt="Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Ao vivo</a></li>
+            <li><a href="#">Biblioteca</a></li>
+            <!-- Add more links as needed -->
+        </ul>
+    </nav>
+    <div class="featured-video">
+        <video src="featured.mp4"  autoplay muted loop class="video-player"></video>
+    </div>
+    <div class="gallery-container">
+        <h2>Flowers Conference</h2>
+        <div class="video-row">
+            <a href="player.html?videoId=X6Wa9Hp_TwM">
+                <img src="thumbnail1.jpg" alt="Video Thumbnail" class="video-thumbnail">
+            </a>
+                <img src="thumbnail2.jpg" alt="Video Thumbnail" class="video-thumbnail">
+                <img src="thumbnail3.jpg" alt="Video Thumbnail" class="video-thumbnail">
+                <img src="thumbnail3.jpg" alt="Video Thumbnail" class="video-thumbnail">
+                <img src="thumbnail3.jpg" alt="Video Thumbnail" class="video-thumbnail">
+                <img src="thumbnail3.jpg" alt="Video Thumbnail" class="video-thumbnail">
+                <img src="thumbnail3.jpg" alt="Video Thumbnail" class="video-thumbnail">
+       
+            
+            <!-- add more thumbnails as needed -->
+        </div>
+        <div class="arrow arrow-left">&lt;</div>
+        <div class="arrow arrow-right">&gt;</div>
+    </div>
+
+    <div class="gallery-container">
+        <h2>Flowers 2022</h2>
+        <div class="video-row">
+            <img src="thumbnail1.jpg" alt="Video Thumbnail" class="video-thumbnail">
+            <img src="thumbnail2.jpg" alt="Video Thumbnail" class="video-thumbnail">
+            <img src="thumbnail3.jpg" alt="Video Thumbnail" class="video-thumbnail">
+            <!-- add more thumbnails as needed -->
+        </div>
+    </div>
+
+    <div class="gallery-container">
+        <h2>Flowers 2021</h2>
+        <div class="video-row">
+            <img src="thumbnail1.jpg" alt="Video Thumbnail" class="video-thumbnail">
+            <img src="thumbnail2.jpg" alt="Video Thumbnail" class="video-thumbnail">
+            <img src="thumbnail3.jpg" alt="Video Thumbnail" class="video-thumbnail">
+            <!-- add more thumbnails as needed -->
+        </div>
+    </div>
+
+    <div class="gallery-container">
+        <h2>Flowers 2020</h2>
+        <div class="video-row">
+            <img src="thumbnail1.jpg" alt="Video Thumbnail" class="video-thumbnail">
+            <img src="thumbnail2.jpg" alt="Video Thumbnail" class="video-thumbnail">
+            <img src="thumbnail3.jpg" alt="Video Thumbnail" class="video-thumbnail">
+            <!-- add more thumbnails as needed -->
+        </div>
+    </div>
+
+    <div class="gallery-container">
+        <h2>Flowers 2019</h2>
+        <div class="video-row">
+            <img src="thumbnail1.jpg" alt="Video Thumbnail" class="video-thumbnail">
+            <img src="thumbnail2.jpg" alt="Video Thumbnail" class="video-thumbnail">
+            <img src="thumbnail3.jpg" alt="Video Thumbnail" class="video-thumbnail">
+            <!-- add more thumbnails as needed -->
+        </div>
+    </div>
+
+    <div class="gallery-container">
+        <h2>Flowers 2018</h2>
+        <div class="video-row">
+            <img src="thumbnail1.jpg" alt="Video Thumbnail" class="video-thumbnail">
+            <img src="thumbnail2.jpg" alt="Video Thumbnail" class="video-thumbnail">
+            <img src="thumbnail3.jpg" alt="Video Thumbnail" class="video-thumbnail">
+            <!-- add more thumbnails as needed -->
+        </div>
+    </div>
+
+    <div class="gallery-container">
+        <h2>Flowers 2017</h2>
+        <div class="video-row">
+            <img src="thumbnail1.jpg" alt="Video Thumbnail" class="video-thumbnail">
+            <img src="thumbnail2.jpg" alt="Video Thumbnail" class="video-thumbnail">
+            <img src="thumbnail3.jpg" alt="Video Thumbnail" class="video-thumbnail">
+            <!-- add more thumbnails as needed -->
+        </div>
+    </div>
+
+    <div class="gallery-container">
+        <h2>Flowers 2016</h2>
+        <div class="video-row">
+            <img src="thumbnail1.jpg" alt="Video Thumbnail" class="video-thumbnail">
+            <img src="thumbnail2.jpg" alt="Video Thumbnail" class="video-thumbnail">
+            <img src="thumbnail3.jpg" alt="Video Thumbnail" class="video-thumbnail">
+            <!-- add more thumbnails as needed -->
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.arrow-right').addEventListener('click', function() {
+            document.querySelector('.video-row').scrollBy({ top: 0, left: 300, behavior: 'smooth' });
+        });
+
+        document.querySelector('.arrow-left').addEventListener('click', function() {
+            document.querySelector('.video-row').scrollBy({ top: 0, left: -300, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
