@@ -7,10 +7,33 @@ import thumbnail2 from './thumbnail2.jpg'
 import thumbnail3 from './thumbnail3.jpg'
 import featured from './featured.mp4'
 import jwt_decode from "jwt-decode";
+import Video from "../videoPage/VideoPlayerPage";
 
 function WelcomePage() {
     const videoRowRef = useRef(null);
     const navigate = useNavigate();
+
+
+    const videos = [
+      {
+        thumbnail: "thumbnail1.jpg",
+        videoUrl: "https://nftstorage.link/ipfs/bafybeia6b6m3gughnvhtwrhgzvysi5ntozwqy2pkoqcxce6qwb5f4x3g44"
+      },
+      {
+        thumbnail: "thumbnail2.jpg",
+        videoUrl: "https://nftstorage.link/ipfs/bafybeicivos6tzbvadoj25uwm7psfyajdawcd25deybqiu2nskllwx5dfa"
+      },
+      {
+        thumbnail: "thumbnail3.jpg",
+        videoUrl: "https://nftstorage.link/ipfs/bafybeicr7qzxoiftqpdy3zc2gnrm2pjigmltv2by3ppiueadycojbyhsye"
+      },
+      {
+        thumbnail: "thumbnail1.jpg",
+        videoUrl: "https://nftstorage.link/ipfs/bafybeihelfvl3wkv24itd355vpbfan3sdrxrkcopi3t4xuf2wtjnqritdu"
+      }
+
+
+    ];
 
     useEffect(() => {
       const checkToken = async () => {
@@ -67,13 +90,12 @@ function WelcomePage() {
             </div>
             <div className={styles["gallery-container"]}>
                 <h2>Flowers Conference</h2>
-                <div className={styles["video-row"]} ref={videoRowRef}>
-                    <a href="player.html?videoId=X6Wa9Hp_TwM">
-                        <img src={thumbnail1} alt="Video Thumbnail" className={styles["video-thumbnail"]} />
-                    </a>
-                    <img src={thumbnail2} alt="Video Thumbnail" className={styles["video-thumbnail"]} />
-                    <img src={thumbnail3} alt="Video Thumbnail" className={styles["video-thumbnail"]} />
-                    <img src={thumbnail1} alt="Video Thumbnail" className={styles["video-thumbnail"]} />
+                <div className="video-row">
+                  {videos.map((video, index) => (
+                    <Link key={index} to={`/player/${encodeURIComponent(video.videoUrl)}`}>
+                      <img src={video.thumbnail} alt="Video Thumbnail" className="video-thumbnail"/>
+                    </Link>
+                  ))}
                 </div>
                 <div className={styles.arrow + " " + styles["arrow-left"]} onClick={scrollLeft}>&lt;</div>
                 <div className={styles.arrow + " " + styles["arrow-right"]} onClick={scrollRight}>&gt;</div>

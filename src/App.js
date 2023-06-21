@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './components/loginPage/loginPage.js';
 import WelcomePage from './components/welcome/welcomePage.js'; // You'll create this component in the next step
-import VideoPage from './components/videoPage/videoPage.js';
+import VideoPage from './components/videoPage/VideoPlayerPage.js';
 import ChangePassword from './components/changePassword/changePassword.js';
 
 import PrivateRoute from './components/privateRoutes/privateRoute.js';
