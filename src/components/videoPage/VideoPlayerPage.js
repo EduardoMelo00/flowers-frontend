@@ -7,10 +7,10 @@ const VideoPlayerPage = () => {
 
   return (
     <div className="video-container">
-      <video width="320" height="240" controls controlsList="nodownload" onContextMenu={(e) => e.preventDefault()}>
-        <source src={decodedVideoUrl} type="video/mp4"/>
-        Your browser does not support the video tag.
-      </video>
+     <video width="1024" height="680" controls controlsList="nodownload" onContextMenu={(e) => e.preventDefault()} autoPlay playsInline>
+    <source src={decodedVideoUrl} type="video/mp4"/>
+    Your browser does not support the video tag.
+</video>
     </div>
   );
 }
