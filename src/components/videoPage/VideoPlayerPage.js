@@ -5,6 +5,9 @@ const VideoPlayerPage = () => {
   const { videoUrl } = useParams();
   const decodedVideoUrl = decodeURIComponent(videoUrl);
 
+  console.log('decoded')
+  console.log(decodedVideoUrl)
+
   return (
     <div className="video-container">
     <video width="1024" height="680" controls controlsList="nodownload" onContextMenu={(e) => e.preventDefault()} autoPlay muted onError={(e) => console.error('Video error:', e)}>
