@@ -2,8 +2,8 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 const VideoPlayerPage = () => {
-  const { videoUrl } = useParams();
-  const decodedVideoUrl = decodeURIComponent(videoUrl);
+  const { id } = useParams();
+  const decodedVideoUrl = decodeURIComponent(id);
 
   console.log('decoded')
   console.log(decodedVideoUrl)
