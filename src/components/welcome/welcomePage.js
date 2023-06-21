@@ -92,14 +92,16 @@ function WelcomePage() {
             <div className={styles["gallery-container"]}>
 
         
-                <h2>Flowers Conference</h2>
-                <div className="video-row">
-                  {videos.map((video, index) => (
-                    <Link key={index} to={`/video/${encodeURIComponent(video.videoUrl)}`}>
-                      <img src={video.thumbnail} alt="Video Thumbnail" className="video-thumbnail"/>
-                    </Link>
-                  ))}
-                </div>
+            <h2>Flowers Conference</h2>
+<div className="video-row" ref={videoRowRef}>
+  {videos.map((video, index) => (
+    <Link key={index} to={`/video/${encodeURIComponent(video.videoUrl)}`}>
+      <img src={video.thumbnail} alt="Video Thumbnail" className="video-thumbnail"/>
+    </Link>
+  ))}
+</div>
+
+
                 <div className={styles.arrow + " " + styles["arrow-left"]} onClick={scrollLeft}>&lt;</div>
                 <div className={styles.arrow + " " + styles["arrow-right"]} onClick={scrollRight}>&gt;</div>
             </div>
