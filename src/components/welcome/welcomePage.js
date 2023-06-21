@@ -106,7 +106,8 @@ function WelcomePage() {
 
         
             <h2>Flowers Conference</h2>
-            <div className="video-row" ref={videoRowRef}>
+            <div className={styles.videoRow} ref={videoRowRef}>
+
             {videos.map((video, index) => (
               <a key={index} href={`/video/${encodeURIComponent(video.videoUrl)}`}>
                 <img src={video.thumbnail} alt="Video Thumbnail" className="video-thumbnail"/>
