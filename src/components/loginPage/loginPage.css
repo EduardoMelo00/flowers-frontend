@@ -1,10 +1,10 @@
-body {
+body.login-page {
   background: url('background.jpeg') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  color: white;
+ 
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -33,7 +33,7 @@ body {
   border-radius: 4px;
 }
 
-h2 {
+h2.h2Login {
   text-align: center;
   margin-bottom: 24px;
 }

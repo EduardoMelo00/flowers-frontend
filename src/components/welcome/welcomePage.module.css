@@ -1,8 +1,14 @@
+body{
+  background-color: black !important;
+}
 
+h2{
+  color: white;
+}
 
 .top-nav {
   background: rgba(255,255,255,0);
-  color: #141414;
+  color: white;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -26,6 +32,7 @@
   list-style: none;
   display: flex;
   margin-left: -30px;
+  margin-top: 15px;
 }
 
 .nav-links li {
@@ -39,8 +46,8 @@
 
 .featured-video {
   position: relative;
-  height: 140vh;  /* This will take the full height of the viewport */
-  width: 185vh;
+  height: 80vh;  /* This will take the full height of the viewport */
+  width: 100%;
   overflow: hidden;
 }
 
@@ -57,30 +64,34 @@
 
 .gallery-container {
   position: relative;
-  top: -170px; /* Adjust as needed to overlap the video */
+  top: -80px; /* Adjust as needed to overlap the video */
   margin-bottom: 100px;
-  width: 80%;
-  margin-left: auto;
+  width: auto;
+  margin-left: 40px;
   margin-right: auto;
 }
 
 .video-row {
   display: flex;
-  overflow-x: auto;
+  overflow-x: scroll; 
   padding: 10px 0;
-  scroll-snap-type: x mandatory; /* Added for carousel effect */
+  scroll-snap-type: x mandatory;
+  white-space: nowrap;
+  flex-direction: row;
+  align-items: flex-start;
 }
+
 
 .video-thumbnail {
   flex: 0 0 auto;
-  width: 300px;
-  height: 170px;
-  margin-right: 10px;
-  object-fit: cover;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: transform 0.2s ease-in-out;
-  scroll-snap-align: start; /* Added for carousel effect */
+    width: 300px;
+    height: 170px;
+    margin-right: 10px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform 0.2s ease-in-out;
+    scroll-snap-align: start; /* Added for carousel effect */
 }
 
 .video-thumbnail:hover {

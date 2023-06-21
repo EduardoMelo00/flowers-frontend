@@ -4,8 +4,7 @@ import LoginPage from './components/loginPage/loginPage.js';
 import WelcomePage from './components/welcome/welcomePage.js'; // You'll create this component in the next step
 import VideoPage from './components/videoPage/VideoPlayerPage.js';
 import ChangePassword from './components/changePassword/changePassword.js';
-
-import PrivateRoute from './components/privateRoutes/privateRoute.js';
+import LiveVideoPage from './components/liveVideoPage/liveVideoPage.js';
 
 function App() {
   return (
@@ -16,6 +15,7 @@ function App() {
         <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/video/:id" element={<VideoPage />} />
         <Route path="/change-password" element={<ChangePassword/>} />
+        <Route path="/live" element={<LiveVideoPage/>} />
       </Routes>
     </Router>
   );

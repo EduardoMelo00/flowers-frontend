@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './loginPage.css';
@@ -10,6 +10,32 @@ function LoginPage() {
   const [error, setError] = useState('');
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Add class when component is mounted
+    document.body.classList.add('login-page');
+
+    // Remove class when component is unmounted
+    return () => {
+      document.body.classList.remove('login-page');
+    };
+
+    
+
+  }, []); 
+
+  useEffect(() => {
+    // Add class when component is mounted
+    document.body.classList.add('h2Login');
+
+    // Remove class when component is unmounted
+    return () => {
+      document.body.classList.remove('h2Login');
+    };
+
+    
+
+  }, []); 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
