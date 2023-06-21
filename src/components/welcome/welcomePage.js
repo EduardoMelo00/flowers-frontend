@@ -110,7 +110,8 @@ function WelcomePage() {
 
             {videos.map((video, index) => (
               <a key={index} href={`/video/${encodeURIComponent(video.videoUrl)}`}>
-                <img src={video.thumbnail} alt="Video Thumbnail" className="video-thumbnail"/>
+               <img src={video.thumbnail} alt="Video Thumbnail" className={styles["video-thumbnail"]} />
+
               </a>
             ))}
           </div>
