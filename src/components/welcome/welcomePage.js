@@ -17,19 +17,19 @@ function WelcomePage() {
 
     const videos = [
       {
-        thumbnail: "thumbnail1.jpg",
+        thumbnail: thumbnail1,
         videoUrl: "https://nftstorage.link/ipfs/bafybeia6b6m3gughnvhtwrhgzvysi5ntozwqy2pkoqcxce6qwb5f4x3g44"
       },
       {
-        thumbnail: "thumbnail2.jpg",
+        thumbnail: thumbnail2,
         videoUrl: "https://nftstorage.link/ipfs/bafybeicivos6tzbvadoj25uwm7psfyajdawcd25deybqiu2nskllwx5dfa"
       },
       {
-        thumbnail: "thumbnail3.jpg",
+        thumbnail: thumbnail3,
         videoUrl: "https://nftstorage.link/ipfs/bafybeicr7qzxoiftqpdy3zc2gnrm2pjigmltv2by3ppiueadycojbyhsye"
       },
       {
-        thumbnail: "thumbnail1.jpg",
+        thumbnail: thumbnail1,
         videoUrl: "https://nftstorage.link/ipfs/bafybeihelfvl3wkv24itd355vpbfan3sdrxrkcopi3t4xuf2wtjnqritdu"
       }
 
@@ -93,7 +93,7 @@ function WelcomePage() {
                 <h2>Flowers Conference</h2>
                 <div className="video-row">
                   {videos.map((video, index) => (
-                    <Link key={index} to={`/player/${encodeURIComponent(video.videoUrl)}`}>
+                    <Link key={index} to={`/video/${encodeURIComponent(video.videoUrl)}`}>
                       <img src={video.thumbnail} alt="Video Thumbnail" className="video-thumbnail"/>
                     </Link>
                   ))}
