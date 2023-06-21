@@ -31,7 +31,20 @@ function WelcomePage() {
       {
         thumbnail: thumbnail1,
         videoUrl: "https://nftstorage.link/ipfs/bafybeihelfvl3wkv24itd355vpbfan3sdrxrkcopi3t4xuf2wtjnqritdu"
+      },
+      {
+        thumbnail: thumbnail2,
+        videoUrl: "https://nftstorage.link/ipfs/bafybeihelfvl3wkv24itd355vpbfan3sdrxrkcopi3t4xuf2wtjnqritdu"
+      },
+      {
+        thumbnail: thumbnail1,
+        videoUrl: "https://nftstorage.link/ipfs/bafybeihelfvl3wkv24itd355vpbfan3sdrxrkcopi3t4xuf2wtjnqritdu"
+      },
+      {
+        thumbnail: thumbnail3,
+        videoUrl: "https://nftstorage.link/ipfs/bafybeihelfvl3wkv24itd355vpbfan3sdrxrkcopi3t4xuf2wtjnqritdu"
       }
+
 
 
     ];
