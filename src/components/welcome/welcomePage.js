@@ -18,7 +18,7 @@ function WelcomePage() {
     const videos = [
       {
         thumbnail: thumbnail1,
-        videoUrl: "https://nftstorage.link/ipfs/bafybeia6b6m3gughnvhtwrhgzvysi5ntozwqy2pkoqcxce6qwb5f4x3g44"
+        videoUrl: "https://bafybeia6b6m3gughnvhtwrhgzvysi5ntozwqy2pkoqcxce6qwb5f4x3g44.ipfs.dweb.link/"
       },
       {
         thumbnail: thumbnail2,
