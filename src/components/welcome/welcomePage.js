@@ -8,6 +8,7 @@ import thumbnail3 from './thumbnail3.jpg'
 import featured from './featured.mp4'
 import jwt_decode from "jwt-decode";
 import Video from "../videoPage/VideoPlayerPage";
+import { Link } from 'react-router-dom';
 
 function WelcomePage() {
     const videoRowRef = useRef(null);
