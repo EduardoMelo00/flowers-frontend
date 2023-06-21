@@ -90,6 +90,12 @@ function WelcomePage() {
                 <video src={featured} autoPlay muted loop className={styles["video-player"]}></video>
             </div>
             <div className={styles["gallery-container"]}>
+
+            <video width="1024" height="680" controls controlsList="nodownload" onContextMenu={(e) => e.preventDefault()} autoPlay muted onError={(e) => console.error('Video error:', e)}>
+    <source src="https://bafybeia6b6m3gughnvhtwrhgzvysi5ntozwqy2pkoqcxce6qwb5f4x3g44.ipfs.dweb.link/" type="video/mp4"/>
+    Your browser does not support the video tag.
+</video>
+
                 <h2>Flowers Conference</h2>
                 <div className="video-row">
                   {videos.map((video, index) => (
