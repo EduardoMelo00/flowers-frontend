@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './welcomePage.module.css';
 import logo from './logo.png';
@@ -15,7 +15,6 @@ import ceres from './ceres.jpeg'
 import flowersConference from './flowers2021.jpeg'
 import flowers2022 from './flowers2022.jpeg'
 
-
 import featured from './featured.mp4';
 
 function WelcomePage() {
@@ -24,14 +23,10 @@ function WelcomePage() {
   const videoRowRef3 = useRef(null);
   const navigate = useNavigate();
 
-
+  const [lastActive, setLastActive] = useState(Date.now());
 
   const videos = [
-    {
-      thumbnail: alexandra,
-      videoUrl:
-        'QbHe2A3t1SQ',
-    },
+ 
     {
       thumbnail: iracet,
       videoUrl:
@@ -144,6 +139,21 @@ function WelcomePage() {
   ];
 
   useEffect(() => {
+    // Existing code...
+  
+    // Update lastActive whenever user interacts with the page
+    const handleActivity = () => setLastActive(Date.now());
+    window.addEventListener('mousemove', handleActivity);
+    window.addEventListener('keypress', handleActivity);
+  
+    return () => {
+      window.removeEventListener('mousemove', handleActivity);
+      window.removeEventListener('keypress', handleActivity);
+    };
+  }, [navigate]); 
+
+  useEffect(() => {
+
     const checkToken = async () => {
       try {
         const response = await fetch(
@@ -153,6 +163,10 @@ function WelcomePage() {
             credentials: 'include', // include, *same-origin, omit
           }
         );
+
+        if (Date.now() - lastActive > 4 * 60 * 60 * 1000) {
+          navigate('/login');
+        }
 
         if (response.ok) {
           // Token is valid, user is authenticated
@@ -238,7 +252,6 @@ function WelcomePage() {
   </div>
 </div>
 
-
       <div className={styles['gallery-container']}>
         <h2>Flowers 2022</h2>
         <div className={styles['video-row']} ref={videoRowRef2}>
@@ -298,11 +311,7 @@ function WelcomePage() {
         >
           &gt;
         </div>
-            
-
-      </div>
-
-      
+      </div>    
     </div>
   );
 }
