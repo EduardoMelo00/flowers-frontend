@@ -12,7 +12,7 @@ function ForgotPasswordPage() {
       const response = await axios.post('https://flowers-node-backend-2c4af429ac26.herokuapp.com/api/auth/forgot-password', { email });
 
       if (response.status === 200) {
-        setMessage('Password reset link sent to your email.');
+        setMessage('Um link para resetar a senha foi enviado para o seu e-mail');
       }
     } catch (error) {
       if (error.response) {

@@ -35,7 +35,35 @@ function ResetPasswordPage() {
     }
   };
 
-  // ... rest of your code
+  return (
+    <div>
+      <h2>Reset Password</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="password">New Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="confirmPassword">Confirm New Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+        </div>
+        <button type="submit">Reset Password</button>
+      </form>
+      <p>{message}</p>
+    </div>
+  );
 }
 
 export default ResetPasswordPage;
