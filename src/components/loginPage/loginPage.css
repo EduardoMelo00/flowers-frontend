@@ -74,9 +74,43 @@ button {
   text-decoration: none;
 }
 
-@media screen and (max-width: 480px) {
-  .logo {
-    width: 90px;  
+@media screen and (max-width: 768px) {
+  .body.login-page {
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 
+  .logo-container {
+    position: static;
+    padding: 20px 0;
+    text-align: center;
+  }
+
+  .logo {
+    width: 80%;  /* Decrease the width */
+    height: auto;  /* Make sure height scales proportionally */
+    margin: 0 auto; /* Center the logo */
+  }
+
+  .login-container {
+    width: 90%;
+    padding: 16px;
+    margin: 0 auto;
+  }
+
+  h2.h2Login {
+    font-size: 1.5em; /* Decrease the font size */
+  }
+
+  .form-group input {
+    font-size: 1em; /* Decrease the font size */
+  }
+
+  button {
+    font-size: 1em; /* Decrease the font size */
+  }
+
+  .help {
+    font-size: 0.8em; /* Decrease the font size */
+  }
 }
