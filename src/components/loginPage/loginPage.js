@@ -20,8 +20,6 @@ function LoginPage() {
       document.body.classList.remove('login-page');
     };
 
-    
-
   }, []); 
 
   useEffect(() => {
@@ -32,8 +30,6 @@ function LoginPage() {
     return () => {
       document.body.classList.remove('h2Login');
     };
-
-    
 
   }, []); 
 
@@ -50,9 +46,7 @@ function LoginPage() {
 
       if (response.status === 200) {
         // Show a message that the link was sent to the user's email
-        setEmail('');
-        setPassword('');
-        setError('Login link sent to your email. Please check your inbox.');
+        navigate('/email-sent');
       }
     } catch (error) {
       if (error.response) {

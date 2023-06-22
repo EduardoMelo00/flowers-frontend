@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 const ChangePassword = () => {
   const [email, setEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,14 +22,16 @@ const ChangePassword = () => {
     try {
       const response = await axios.post('https://flowers-node-backend-2c4af429ac26.herokuapp.com/api/auth/change-password', {
         email,
-        confirmPassword,
         newPassword,
+        confirmPassword,
       });
-      setMessage('Password changed successfully.');
+
+      navigate('/success');
     } catch (err) {
       setMessage('Failed to change password. Please try again.', err.message);
     }
   };
+
 
   return (
     <div>

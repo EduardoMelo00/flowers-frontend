@@ -5,6 +5,17 @@ import logo from './logo.png';
 import thumbnail1 from './thumbnail1.jpg';
 import thumbnail2 from './thumbnail2.jpg';
 import thumbnail3 from './thumbnail3.jpg';
+import alexandra from './alexandra.jpeg';
+import iracet from './iracet.jpeg';
+import gabi from './gabi.jpeg';
+import priscila from './priscila.jpeg';
+import marisa from './marisa.jpeg';
+import lia from './lia.jpeg';
+import ceres from './ceres.jpeg'
+import flowersConference from './flowers2021.jpeg'
+import flowers2022 from './flowers2022.jpeg'
+
+
 import featured from './featured.mp4';
 
 function WelcomePage() {
@@ -13,42 +24,123 @@ function WelcomePage() {
   const videoRowRef3 = useRef(null);
   const navigate = useNavigate();
 
+
+
   const videos = [
     {
+      thumbnail: alexandra,
+      videoUrl:
+        'QbHe2A3t1SQ',
+    },
+    {
+      thumbnail: iracet,
+      videoUrl:
+        'VZ1jdPLHhl0',
+    },
+    {
+      thumbnail: gabi,
+      videoUrl:
+        'FC78HqYp_6c',
+    },
+    {
       thumbnail: thumbnail1,
+      videoUrl:
+        '5mviVdQPi9w',
+    },
+    {
+      thumbnail: thumbnail2,
+      videoUrl:
+        'X6Wa9Hp_TwM',
+    },
+    {
+      thumbnail: priscila,
+      videoUrl:
+        'fHMyqLT2H5o',
+    },
+    {
+      thumbnail: thumbnail3,
+      videoUrl:
+        'jZ-lZEG50lw',
+    },
+    {
+      thumbnail: marisa,
+      videoUrl:
+        'OKhTOkPtt_o',
+    },
+    {
+      thumbnail: lia,
+      videoUrl:
+        'mzDPSR-la-c',
+    },
+    {
+      thumbnail: ceres,
+      videoUrl:
+        'Ju5pkT34z9A',
+    },
+  ];
+
+  const videosFlowers2021 = [
+    {
+      thumbnail: flowersConference,
+      videoUrl:
+        'https://bafybeietxiu4otaipbeayiabcadlvmquwgqehbxhwjyswwgbt54vjajvke.ipfs.dweb.link/',
+    },
+    {
+      thumbnail: flowersConference,
+      videoUrl:
+        'https://bafybeia5lic77pvkrf555qwrffcnhnl3end4nrbzglnsla4bayvkkyuq7q.ipfs.dweb.link/',
+    },
+    {
+      thumbnail: flowersConference,
+      videoUrl:
+        'https://bafybeigufj2og2dpp5eftnqoe6dlu2zx64eg2vmmfxsu7bjth5fx4jo7yi.ipfs.dweb.link/',
+    },
+    {
+      thumbnail: flowersConference,
+      videoUrl:
+        'https://bafybeignecsybvrslrarfm7kolxyhcr2beqn5rvb6a5m3y26oclgwfsvsy.ipfs.dweb.link/',
+    },
+    {
+      thumbnail: flowersConference,
+      videoUrl:
+        'https://bafybeicpxkrn6s7h5n2mvyjxm7pmwbrzitugxmmeopelqc6jyaik5bwv4m.ipfs.dweb.link/',
+    },
+    {
+      thumbnail: flowersConference,
+      videoUrl:
+        'https://bafybeiaozwee7ssizcuvy6a7gnuhexpoi2fbp6mww6jxc2ia6kg4xmccee.ipfs.dweb.link/',
+    },
+    
+  ];
+
+  const videosFlowers2022 = [
+    {
+      thumbnail: flowers2022,
       videoUrl:
         'https://bafybeia6b6m3gughnvhtwrhgzvysi5ntozwqy2pkoqcxce6qwb5f4x3g44.ipfs.dweb.link/',
     },
     {
-      thumbnail: thumbnail2,
+      thumbnail: flowers2022,
       videoUrl:
-        'https://nftstorage.link/ipfs/bafybeicivos6tzbvadoj25uwm7psfyajdawcd25deybqiu2nskllwx5dfa',
+        'https://bafybeicivos6tzbvadoj25uwm7psfyajdawcd25deybqiu2nskllwx5dfa.ipfs.dweb.link/',
     },
     {
-      thumbnail: thumbnail3,
+      thumbnail: flowers2022,
       videoUrl:
-        'https://nftstorage.link/ipfs/bafybeicr7qzxoiftqpdy3zc2gnrm2pjigmltv2by3ppiueadycojbyhsye',
+        'https://bafybeicr7qzxoiftqpdy3zc2gnrm2pjigmltv2by3ppiueadycojbyhsye.ipfs.dweb.link/',
     },
     {
-      thumbnail: thumbnail1,
+      thumbnail: flowers2022,
       videoUrl:
-        'https://nftstorage.link/ipfs/bafybeihelfvl3wkv24itd355vpbfan3sdrxrkcopi3t4xuf2wtjnqritdu',
+        'https://bafybeihelfvl3wkv24itd355vpbfan3sdrxrkcopi3t4xuf2wtjnqritdu.ipfs.dweb.link/',
     },
     {
-      thumbnail: thumbnail2,
+      thumbnail: flowers2022,
       videoUrl:
-        'https://nftstorage.link/ipfs/bafybeihelfvl3wkv24itd355vpbfan3sdrxrkcopi3t4xuf2wtjnqritdu',
+        'https://bafybeibnpid64ahnunq6uvvd7itbqfuwygoipnra5olmq2pzm5ed7fhzse.ipfs.dweb.link/',
     },
-    {
-      thumbnail: thumbnail1,
-      videoUrl:
-        'https://nftstorage.link/ipfs/bafybeihelfvl3wkv24itd355vpbfan3sdrxrkcopi3t4xuf2wtjnqritdu',
-    },
-    {
-      thumbnail: thumbnail3,
-      videoUrl:
-        'https://nftstorage.link/ipfs/bafybeihelfvl3wkv24itd355vpbfan3sdrxrkcopi3t4xuf2wtjnqritdu',
-    },
+
+    
   ];
 
   useEffect(() => {
@@ -117,40 +209,40 @@ function WelcomePage() {
       </div>
 
       <div className={styles['gallery-container']}>
-        <h2>Top 10</h2>
-        <div className={styles['video-row']} ref={videoRowRef1}>
-          {videos.map((video, index) => (
-            <a
-              key={index}
-              href={`/video/${encodeURIComponent(video.videoUrl)}`}
-            >
-              <img
-                src={video.thumbnail}
-                alt="Video Thumbnail"
-                className={styles['video-thumbnail']}
-              />
-            </a>
-          ))}
-        </div>
-        <div
-          className={styles.arrow + ' ' + styles['arrow-left']}
-          onClick={() => scrollLeft(videoRowRef1)}
-        >
-          &lt;
-        </div>
-        <div
-          className={styles.arrow + ' ' + styles['arrow-right']}
-          onClick={() => scrollRight(videoRowRef1)}
-        >
-          &gt;
-        </div>
-            
-      </div>
+  <h2>Top 10</h2>
+  <div className={styles['video-row']} ref={videoRowRef1}>
+    {videos.map((video, index) => (
+      <a
+        key={index}
+        href={`/youtube/${encodeURIComponent(video.videoUrl)}`}
+      >
+        <img
+          src={video.thumbnail}
+          alt="Video Thumbnail"
+          className={styles['video-thumbnail']}
+        />
+      </a>
+    ))}
+  </div>
+  <div
+    className={styles.arrow + ' ' + styles['arrow-left']}
+    onClick={() => scrollLeft(videoRowRef1)}
+  >
+    &lt;
+  </div>
+  <div
+    className={styles.arrow + ' ' + styles['arrow-right']}
+    onClick={() => scrollRight(videoRowRef1)}
+  >
+    &gt;
+  </div>
+</div>
+
 
       <div className={styles['gallery-container']}>
         <h2>Flowers 2022</h2>
         <div className={styles['video-row']} ref={videoRowRef2}>
-          {videos.map((video, index) => (
+          {videosFlowers2022.map((video, index) => (
             <a
               key={index}
               href={`/video/${encodeURIComponent(video.videoUrl)}`}
@@ -181,7 +273,7 @@ function WelcomePage() {
       <div className={styles['gallery-container']}>
         <h2>Flowers 2021</h2>
         <div className={styles['video-row']} ref={videoRowRef3}>
-          {videos.map((video, index) => (
+          {videosFlowers2021.map((video, index) => (
             <a
               key={index}
               href={`/video/${encodeURIComponent(video.videoUrl)}`}
