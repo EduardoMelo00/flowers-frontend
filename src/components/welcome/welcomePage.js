@@ -8,7 +8,9 @@ import thumbnail3 from './thumbnail3.jpg';
 import featured from './featured.mp4';
 
 function WelcomePage() {
-  const videoRowRef = useRef(null);
+  const videoRowRef1 = useRef(null);
+  const videoRowRef2 = useRef(null);
+  const videoRowRef3 = useRef(null);
   const navigate = useNavigate();
 
   const videos = [
@@ -81,14 +83,14 @@ function WelcomePage() {
     checkToken();
   }, [navigate]);
 
-  const scrollLeft = () => {
-    videoRowRef.current.scrollBy({ top: 0, left: -300, behavior: 'smooth' });
+  const scrollLeft = (ref) => {
+    ref.current.scrollBy({ top: 0, left: -300, behavior: 'smooth' });
   };
 
-  const scrollRight = () => {
-    videoRowRef.current.scrollBy({ top: 0, left: 300, behavior: 'smooth' });
+  const scrollRight = (ref) => {
+    ref.current.scrollBy({ top: 0, left: 300, behavior: 'smooth' });
   };
-
+  
   return (
     <div >
       <nav className={styles['top-nav']}>
@@ -113,9 +115,10 @@ function WelcomePage() {
           className={styles['video-player']}
         ></video>
       </div>
+
       <div className={styles['gallery-container']}>
         <h2>Top 10</h2>
-        <div className={styles.videoRow} ref={videoRowRef}>
+        <div className={styles['video-row']} ref={videoRowRef1}>
           {videos.map((video, index) => (
             <a
               key={index}
@@ -131,13 +134,13 @@ function WelcomePage() {
         </div>
         <div
           className={styles.arrow + ' ' + styles['arrow-left']}
-          onClick={scrollLeft}
+          onClick={() => scrollLeft(videoRowRef1)}
         >
           &lt;
         </div>
         <div
           className={styles.arrow + ' ' + styles['arrow-right']}
-          onClick={scrollRight}
+          onClick={() => scrollRight(videoRowRef1)}
         >
           &gt;
         </div>
@@ -146,7 +149,7 @@ function WelcomePage() {
 
       <div className={styles['gallery-container']}>
         <h2>Flowers 2022</h2>
-        <div className={styles.videoRow} ref={videoRowRef}>
+        <div className={styles['video-row']} ref={videoRowRef2}>
           {videos.map((video, index) => (
             <a
               key={index}
@@ -162,23 +165,22 @@ function WelcomePage() {
         </div>
         <div
           className={styles.arrow + ' ' + styles['arrow-left']}
-          onClick={scrollLeft}
+          onClick={() => scrollLeft(videoRowRef2)}
         >
           &lt;
         </div>
         <div
           className={styles.arrow + ' ' + styles['arrow-right']}
-          onClick={scrollRight}
+          onClick={() => scrollRight(videoRowRef2)}
         >
           &gt;
         </div>
-            
 
       </div>
 
       <div className={styles['gallery-container']}>
         <h2>Flowers 2021</h2>
-        <div className={styles.videoRow} ref={videoRowRef}>
+        <div className={styles['video-row']} ref={videoRowRef3}>
           {videos.map((video, index) => (
             <a
               key={index}
@@ -194,13 +196,13 @@ function WelcomePage() {
         </div>
         <div
           className={styles.arrow + ' ' + styles['arrow-left']}
-          onClick={scrollLeft}
+          onClick={() => scrollLeft(videoRowRef3)}
         >
           &lt;
         </div>
         <div
           className={styles.arrow + ' ' + styles['arrow-right']}
-          onClick={scrollRight}
+          onClick={() => scrollRight(videoRowRef3)}
         >
           &gt;
         </div>

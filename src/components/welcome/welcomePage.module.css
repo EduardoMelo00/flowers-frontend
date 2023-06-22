@@ -64,26 +64,23 @@ h2{
 
 .gallery-container {
   position: relative;
-  top: -80px; /* Adjust as needed to overlap the video */
-  margin-bottom: 100px;
-  width: auto;
-  margin-left: 40px;
-  margin-right: auto;
+    top: -170px; /* Adjust as needed to overlap the video */
+    margin-bottom: 100px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .video-row {
-  display: flex;
-  overflow-x: scroll; 
-  padding: 10px 0;
-  scroll-snap-type: x mandatory;
-  white-space: nowrap;
-  flex-direction: row;
-  align-items: flex-start;
+  display: flex;  
+    overflow-x: auto;
+    padding: 10px 0;
+    scroll-snap-type: x mandatory; /* Added for carousel effect */
 }
 
 
 .video-thumbnail {
-  flex: 0 0 auto;
+    flex: 0 0 auto;
     width: 300px;
     height: 170px;
     margin-right: 10px;
