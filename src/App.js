@@ -6,6 +6,7 @@ import WelcomePage from './components/welcome/welcomePage.js'; // You'll create 
 import VideoPage from './components/videoPage/VideoPlayerPage.js';
 import ChangePassword from './components/changePassword/changePassword.js';
 import ForgotPasswordPage from './components/changePassword/ForgotPasswordPage.js';
+import ResetPasswordPage from './components/changePassword/ResetPasswordPage.js';
 import SuccessPage from './components/changePassword/SuccessPage.js';
 import LiveVideoPage from './components/liveVideoPage/liveVideoPage.js';
 import YoutubePage from './components/youtubePage/youtubePage.js';
@@ -25,6 +26,7 @@ function App() {
         <Route path="/success" element={<SuccessPage />} />
         <Route path="/email-sent" element={<EmailSentPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
         
       </Routes>
     </Router>
