@@ -317,4 +317,4 @@ function WelcomePage() {
   );
 }
 
-export default withAuth(WelcomePage);
+export default WelcomePage;
