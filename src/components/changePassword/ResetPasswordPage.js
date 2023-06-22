@@ -60,7 +60,7 @@ function ResetPasswordPage() {
           />
         </div>
         <button type="submit">Reset Password</button>
-      </form>
+      </form>      
       <p>{message}</p>
     </div>
   );
