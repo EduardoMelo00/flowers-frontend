@@ -14,6 +14,7 @@ import lia from './lia.jpeg';
 import ceres from './ceres.jpeg'
 import flowersConference from './flowers2021.jpeg'
 import flowers2022 from './flowers2022.jpeg'
+import withAuth from '../withAuth/withAuth.js';  // or wherever you put the withAuth.js file
 
 import featured from './featured.mp4';
 
@@ -316,4 +317,4 @@ function WelcomePage() {
   );
 }
 
-export default WelcomePage;
+export default withAuth(WelcomePage);
