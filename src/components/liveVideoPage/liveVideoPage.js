@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import YouTube from 'react-youtube';
 import './liveVideoPage.css';
 
-import withAuth from '../withAuth/withAuth.js';
 
 
 const LiveVideoPage = () => {
@@ -57,4 +56,4 @@ const LiveVideoPage = () => {
     );
 }
 
-export default withAuth(LiveVideoPage);
+export default LiveVideoPage;
