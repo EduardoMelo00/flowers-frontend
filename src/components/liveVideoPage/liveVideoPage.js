@@ -14,11 +14,13 @@ const LiveVideoPage = () => {
     const checkUserAuthentication = async () => {
       try {
         const token = Cookies.get('token'); // get token from cookies
-        const response = await axios.post('https://flowers-node-backend-2c4af429ac26.herokuapp.com/api/auth/checkToken', {
-          headers: {
-            'Authorization': `Bearer ${token}` // Send token in Authorization header
-          }
-        });
+        const response = await fetch(
+            'https://flowers-node-backend-2c4af429ac26.herokuapp.com/api/auth/check-token',
+            {
+              method: 'GET',
+              credentials: 'include', // include, *same-origin, omit
+            }
+          );
         setIsAuthenticated(response.status === 200);
       } catch (error) {
         console.error(error);
