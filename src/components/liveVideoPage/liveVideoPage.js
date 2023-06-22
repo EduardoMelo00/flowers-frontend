@@ -5,7 +5,7 @@ import './liveVideoPage.css';
 
 
 const LiveVideoPage = () => {
-    const [countdown, setCountdown] = useState(3400);  // 2 hours in seconds
+    const [countdown, setCountdown] = useState(5);  // 2 hours in seconds
     const [showVideo, setShowVideo] = useState(false);
 
     useEffect(() => {
@@ -37,7 +37,7 @@ const LiveVideoPage = () => {
         },
     };
 
-    const videoId = "Ttyn2vNc3is";
+    const videoId = "1pGbxLjp9OQ";
 
     const hours = Math.floor(countdown / 3600);
     const minutes = Math.floor((countdown - (hours * 3600)) / 60);
@@ -45,13 +45,11 @@ const LiveVideoPage = () => {
 
     return (
         <div className="video-container">
-            {showVideo ? (
+ 
                 <YouTube videoId={videoId} opts={opts} className="video"/>
-            ) : (
-                <h1 className="countdown" style={{ color: 'white' }}>
-                    O culto iniciará em : {hours}:{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-                </h1>
-            )}
+      
+      
+            
         </div>
     );
 }
