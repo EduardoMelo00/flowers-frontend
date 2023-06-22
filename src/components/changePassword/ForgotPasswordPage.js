@@ -48,7 +48,7 @@ function ForgotPasswordPage() {
               id="email"
               name="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value.toLowerCase())}
             />
           </label>
         </div>

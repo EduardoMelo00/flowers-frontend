@@ -72,7 +72,7 @@ function LoginPage() {
               id="email"
               name="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value.toLowerCase())}
             />
           </div>
           <div className="form-group">
@@ -92,7 +92,7 @@ function LoginPage() {
           <a href="/forgot-password">Esqueceu a Senha ?</a>
         </div>
         <div className="help">
-          <a href="#">Precisa de Ajuda ?</a>
+          <a href="https://wa.me/6899013477">Precisa de Ajuda ?</a>
         </div>
       </div>
     </div>
