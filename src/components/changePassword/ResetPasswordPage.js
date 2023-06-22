@@ -10,7 +10,7 @@ function ResetPasswordPage() {
   const search = useLocation().search;
   const token = new URLSearchParams(search).get('token');
 
-  const history = useNavigate(); // Define history here
+  const history = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -24,43 +24,59 @@ function ResetPasswordPage() {
       const response = await axios.post('https://flowers-node-backend-2c4af429ac26.herokuapp.com/api/auth/reset-password', { password, token });
 
       if (response.status === 200) {
-        history.push('/success'); // Replace navigate with history.push
+        history.push('/success');
       }
     } catch (error) {
       if (error.response) {
-        setMessage(error.response.data.error);
-      } else {
-        setMessage('Unable to connect to the server. Please try again later.');
+        setMessage(error.response.data.error || 'Unable to connect to the server. Please try again later.');
       }
     }
   };
 
+  const inputStyle = {
+    display: 'block',
+    width: '100%',
+    maxWidth: '300px',
+    margin: '10px auto'
+  };
+
+  const responsiveDivStyle = {
+    textAlign: 'center',
+    color: 'white',
+    padding: '20px',
+    boxSizing: 'border-box'
+  };
+
   return (
-    <div>
-      <h2>Reset Password</h2>
+    <div style={responsiveDivStyle}>
+      <h2>Resetar senha</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="password">New Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <label style={inputStyle} htmlFor="password">
+            Nova senha
+            <input
+              style={inputStyle}
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </label>
+          <label style={inputStyle} htmlFor="confirmPassword">
+            Confirmar nova senha
+            <input
+              style={inputStyle}
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </label>
         </div>
-        <div className="form-group">
-          <label htmlFor="confirmPassword">Confirm New Password</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit">Reset Password</button>
-      </form>      
+        <button type="submit" style={inputStyle}>Resetar senha</button>
+      </form>
       <p>{message}</p>
     </div>
   );
