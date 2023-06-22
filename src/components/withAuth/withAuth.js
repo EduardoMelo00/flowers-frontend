@@ -1,40 +1,46 @@
-// withAuth.js
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const withAuth = (WrappedComponent) => {
-    return (props) => {
-        const [loading, setLoading] = useState(true);
-        const [isAuthenticated, setIsAuthenticated] = useState(false);
-        const navigate = useNavigate();
+const withAuth = (ComponentToProtect) => {
+  return (props) => {
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
+    
+    useEffect(() => {
+      const checkToken = async () => {
+        try {
+          const response = await fetch(
+            'https://flowers-node-backend-2c4af429ac26.herokuapp.com/api/auth/check-token',
+            {
+              method: 'GET',
+              credentials: 'include', // include, *same-origin, omit
+            }
+          );
 
-        useEffect(() => {
-            fetch('https://flowers-node-backend-2c4af429ac26.herokuapp.com/api/auth/checkToken', {
-                method: 'GET',
-                credentials: 'include',  // send cookies
-            })
-                .then(res => res.json())
-                .then(data => {
-                    setIsAuthenticated(data.message === 'Authenticated.');
-                    setLoading(false);
-                })
-                .catch(err => {
-                    console.error(err);
-                    setLoading(false);
-                });
-        }, []);
-
-        if (loading) {
-            return <div>Loading...</div>;  // or your custom loading spinner
+          if (response.status === 401) {
+            // Token is missing or expired, user is not authenticated
+            navigate('/login');
+          } else if (response.ok) {
+            // Token is valid, user is authenticated
+            setLoading(false);
+          } else {
+            // Other error status, handle it accordingly
+            console.log('Error:', response.statusText);
+            // Handle the error case, such as displaying an error message
+          }
+        } catch (error) {
+          console.error('Error:', error.message);
+          // Handle the error case, such as displaying an error message
         }
+      };
+      
+      checkToken();
+    }, [navigate]);
 
-        if (!isAuthenticated) {
-            navigate('/login');  // or your login page path
-            return null;
-        }
-
-        return <WrappedComponent {...props} />;
-    };
+    return (
+      loading ? <div>Loading...</div> : <ComponentToProtect {...props} />
+    );
+  };
 };
 
 export default withAuth;

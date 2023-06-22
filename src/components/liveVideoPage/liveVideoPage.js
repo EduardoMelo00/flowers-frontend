@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import YouTube from 'react-youtube';
 import './liveVideoPage.css';
 
+import withAuth from '../withAuth/withAuth.js';
+
+
 const LiveVideoPage = () => {
     const [countdown, setCountdown] = useState(7200);  // 2 hours in seconds
     const [showVideo, setShowVideo] = useState(false);
@@ -54,4 +57,4 @@ const LiveVideoPage = () => {
     );
 }
 
-export default LiveVideoPage;
+export default withAuth(LiveVideoPage);
