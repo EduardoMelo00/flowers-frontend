@@ -14,7 +14,7 @@ const LiveVideoPage = () => {
     const checkUserAuthentication = async () => {
       try {
         const token = Cookies.get('token'); // get token from cookies
-        const response = await axios.get('https://flowers-node-backend-2c4af429ac26.herokuapp.com/api/auth/checkToken', {
+        const response = await axios.post('https://flowers-node-backend-2c4af429ac26.herokuapp.com/api/auth/checkToken', {
           headers: {
             'Authorization': `Bearer ${token}` // Send token in Authorization header
           }
