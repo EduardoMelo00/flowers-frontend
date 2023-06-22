@@ -22,7 +22,7 @@ function ResetPasswordPage() {
       const response = await axios.post('https://flowers-node-backend-2c4af429ac26.herokuapp.com/api/auth/reset-password', { password, token });
 
       if (response.status === 200) {
-        setMessage('Your password has been reset successfully.');
+        navigate('/success');
       }
     } catch (error) {
       if (error.response) {
