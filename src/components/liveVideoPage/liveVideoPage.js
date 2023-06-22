@@ -15,7 +15,7 @@ const LiveVideoPage = () => {
     },
   };
 
-  const videoId = "7liSf_TN0xU"; 
+  const videoId = "mgxND0ej4_A"; 
 
   return (
     <div className="video-container">
