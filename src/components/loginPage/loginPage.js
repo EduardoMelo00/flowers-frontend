@@ -87,6 +87,10 @@ function LoginPage() {
           </div>
           <button type="submit">Login</button>
         </form>
+
+        <div className="help">
+          <a href="/forgot-password">Esqueceu a Senha ?</a>
+        </div>
         <div className="help">
           <a href="#">Precisa de Ajuda ?</a>
         </div>

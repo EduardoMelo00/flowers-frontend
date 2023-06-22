@@ -5,6 +5,7 @@ import EmailSentPage from './components/loginPage/EmailSentPage.js';
 import WelcomePage from './components/welcome/welcomePage.js'; // You'll create this component in the next step
 import VideoPage from './components/videoPage/VideoPlayerPage.js';
 import ChangePassword from './components/changePassword/changePassword.js';
+import ForgotPasswordPage from './components/changePassword/ForgotPasswordPage.js';
 import SuccessPage from './components/changePassword/SuccessPage.js';
 import LiveVideoPage from './components/liveVideoPage/liveVideoPage.js';
 import YoutubePage from './components/youtubePage/youtubePage.js';
@@ -23,6 +24,8 @@ function App() {
         <Route path="/youtube/:videoUrl" element={<YoutubePage />} />
         <Route path="/success" element={<SuccessPage />} />
         <Route path="/email-sent" element={<EmailSentPage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        
       </Routes>
     </Router>
   );
