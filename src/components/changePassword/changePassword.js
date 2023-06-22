@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-
 const ChangePassword = () => {
   const [email, setEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -32,39 +31,55 @@ const ChangePassword = () => {
     }
   };
 
+  const inputStyle = {
+    display: 'block',
+    width: '100%',
+    maxWidth: '300px',
+    margin: '10px auto'
+  };
+
+  const responsiveDivStyle = {
+    textAlign: 'center',
+    color: 'white',
+    padding: '20px',
+    boxSizing: 'border-box'
+  };
 
   return (
-    <div>
-      <h1>Change Password</h1>
+    <div style={responsiveDivStyle}>
+      <h1>Alteração de senha</h1>
       <form onSubmit={handleSubmit}>
-        <label>
+        <label style={inputStyle}>
           Email:
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            style={inputStyle}
           />
         </label>
-        <label>
-          New Password:
+        <label style={inputStyle}>
+          Nova senha:
           <input
             type="password"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
             required
+            style={inputStyle}
           />
         </label>
-        <label>
-          Confirm New Password:
+        <label style={inputStyle}>
+          Confirme a nova senha:
           <input
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
+            style={inputStyle}
           />
         </label>
-        <button type="submit">Change Password</button>
+        <button type="submit" style={inputStyle}>Alterar senha</button>
       </form>
       {message && <p>{message}</p>}
     </div>

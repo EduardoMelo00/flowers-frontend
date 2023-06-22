@@ -16,28 +16,43 @@ function ForgotPasswordPage() {
       }
     } catch (error) {
       if (error.response) {
-        setMessage(error.response.data.error);
-      } else {
-        setMessage('Unable to connect to the server. Please try again later.');
+        setMessage(error.response.data.error || 'Unable to connect to the server. Please try again later.');
       }
     }
   };
 
+  const inputStyle = {
+    display: 'block',
+    width: '100%',
+    maxWidth: '300px',
+    margin: '10px auto'
+  };
+
+  const responsiveDivStyle = {
+    textAlign: 'center',
+    color: 'white',
+    padding: '20px',
+    boxSizing: 'border-box'
+  };
+
   return (
-    <div>
-      <h2>Forgot Password</h2>
+    <div style={responsiveDivStyle}>
+      <h2>Esqueci a senha</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <label style={inputStyle} htmlFor="email">
+            Email
+            <input
+              style={inputStyle}
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </label>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" style={inputStyle}>Confirmar</button>
       </form>
       <p>{message}</p>
     </div>

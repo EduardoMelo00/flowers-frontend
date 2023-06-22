@@ -9,7 +9,7 @@ const SuccessPage = () => {
   }
 
   return (
-    <div>
+    <div style={{textAlign: 'center', color: 'white'}}>
       <h1>Sucesso!</h1>
       <p>Nova senha cadastrada com sucesso.</p>
       <button onClick={handleButtonClick}>Volte para a tela inicial e faça o login</button>
