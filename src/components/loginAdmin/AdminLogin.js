@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 function AdminLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -14,8 +18,11 @@ function AdminLogin() {
 
       if (response.status === 200) {
         // Successful login
-        // Redirect to the admin panel or update state accordingly
         console.log('Login successful');
+        if (response.status === 200) {
+          // Show a message that the link was sent to the user's email
+          navigate('/login-admin-page');
+        }
       }
     } catch (error) {
       if (error.response) {
