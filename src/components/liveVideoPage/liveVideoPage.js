@@ -28,7 +28,7 @@ const LiveVideoPage = () => {
         width: '100%',
         playerVars: {
             autoplay: 1,
-            controls: 0,
+            controls: 1,
             disablekb: 1,
             modestbranding: 1,
             rel: 0,
@@ -46,12 +46,12 @@ const LiveVideoPage = () => {
     return (
         <div className="video-container">
  
-                {/* <YouTube videoId={videoId} opts={opts} className="video"/>
-       */}
-                <h1 className="countdown" style={{ color: 'white' }}>
+                <YouTube videoId={videoId} opts={opts} className="video"/>
+      
+                {/* <h1 className="countdown" style={{ color: 'white' }}>
                     A transmissão acabou, em breve o culto estará disponível nos destaques.
-                    {/* em : {hours}:{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds} */}
-                </h1>
+                    em : {hours}:{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+                </h1> */}
             
         </div>
     );
