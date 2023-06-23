@@ -10,6 +10,9 @@ import ResetPasswordPage from './components/changePassword/ResetPasswordPage.js'
 import SuccessPage from './components/changePassword/SuccessPage.js';
 import LiveVideoPage from './components/liveVideoPage/liveVideoPage.js';
 import YoutubePage from './components/youtubePage/youtubePage.js';
+import AdminLogin from './components/loginAdmin/AdminLogin.js';
+import AdminLoginPage from './components/loginAdmin/AdminLoginPage.js';
+
 
 
 function App() {
@@ -27,6 +30,10 @@ function App() {
         <Route path="/email-sent" element={<EmailSentPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route path="/login-admin" element={<AdminLogin />} />
+        <Route path="/login-admin-page" element={<AdminLoginPage />} />
+
+        
         
       </Routes>
     </Router>
