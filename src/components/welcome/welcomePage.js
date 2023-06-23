@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './welcomePage.module.css';
+import flowersdia1 from './flowersdia1.jpg';
 import logo from './logo.png';
 import thumbnail1 from './thumbnail1.jpg';
 import thumbnail2 from './thumbnail2.jpg';
@@ -15,6 +16,7 @@ import ceres from './ceres.jpeg'
 import flowersConference from './flowers2021.jpeg'
 import flowers2022 from './flowers2022.jpeg'
 import withAuth from '../withAuth/withAuth.js';  // or wherever you put the withAuth.js file
+
 
 import featured from './featured.mp4';
 
@@ -135,8 +137,15 @@ function WelcomePage() {
       videoUrl:
         'https://bafybeibnpid64ahnunq6uvvd7itbqfuwygoipnra5olmq2pzm5ed7fhzse.ipfs.dweb.link/',
     },
+  ]
+    const destaques = [
+      {
+        thumbnail: flowersdia1,
+        videoUrl:
+          'https://bafybeicxq6qqa2vac2gyyrzaozo2dxbc6ozqiltrdyc6ac62ske2lc3gi4.ipfs.dweb.link/',
+      }
+      
 
-    
   ];
 
   useEffect(() => {
@@ -222,6 +231,38 @@ function WelcomePage() {
           className={styles['video-player']}
         ></video>
       </div>
+
+
+      <div className={styles['gallery-container']}>
+  <h2>Destaques</h2>
+  <div className={styles['video-row']} ref={videoRowRef1}>
+    {destaques.map((video, index) => (
+      <a
+        key={index}
+        href={`/youtube/${encodeURIComponent(video.videoUrl)}`}
+      >
+        <img
+          src={video.thumbnail}
+          alt="Video Thumbnail"
+          className={styles['video-thumbnail']}
+        />
+      </a>
+    ))}
+  </div>
+  <div
+    className={styles.arrow + ' ' + styles['arrow-left']}
+    onClick={() => scrollLeft(videoRowRef1)}
+  >
+    &lt;
+  </div>
+  <div
+    className={styles.arrow + ' ' + styles['arrow-right']}
+    onClick={() => scrollRight(videoRowRef1)}
+  >
+    &gt;
+  </div>
+</div>
+
 
       <div className={styles['gallery-container']}>
   <h2>Top 10</h2>
