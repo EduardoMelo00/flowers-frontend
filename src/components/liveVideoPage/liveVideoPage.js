@@ -46,10 +46,13 @@ const LiveVideoPage = () => {
     return (
         <div className="video-container">
  
-                <YouTube videoId={videoId} opts={opts} className="video"/>
-      
-      
-            
+                {/* <YouTube videoId={videoId} opts={opts} className="video"/>
+       */}
+                <h1 className="countdown" style={{ color: 'white' }}>
+                    A transmissão acabou.
+                    {/* {hours}:{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}*/}
+                </h1> 
+            )
         </div>
     );
 }
