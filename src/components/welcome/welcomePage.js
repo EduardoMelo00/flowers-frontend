@@ -24,6 +24,7 @@ function WelcomePage() {
   const videoRowRef1 = useRef(null);
   const videoRowRef2 = useRef(null);
   const videoRowRef3 = useRef(null);
+  const videoRowRef4 = useRef(null);
   const navigate = useNavigate();
 
   const [lastActive, setLastActive] = useState(Date.now());
@@ -235,7 +236,7 @@ function WelcomePage() {
 
       <div className={styles['gallery-container']}>
   <h2>Destaques</h2>
-  <div className={styles['video-row']} ref={videoRowRef1}>
+  <div className={styles['video-row']} ref={videoRowRef4}>
     {destaques.map((video, index) => (
       <a
         key={index}
@@ -251,13 +252,13 @@ function WelcomePage() {
   </div>
   <div
     className={styles.arrow + ' ' + styles['arrow-left']}
-    onClick={() => scrollLeft(videoRowRef1)}
+    onClick={() => scrollLeft(videoRowRef4)}
   >
     &lt;
   </div>
   <div
     className={styles.arrow + ' ' + styles['arrow-right']}
-    onClick={() => scrollRight(videoRowRef1)}
+    onClick={() => scrollRight(videoRowRef4)}
   >
     &gt;
   </div>
