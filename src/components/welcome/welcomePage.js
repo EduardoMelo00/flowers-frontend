@@ -14,7 +14,7 @@ import lia from './lia.jpeg';
 import ceres from './ceres.jpeg'
 import flowersConference from './flowers2021.jpeg'
 import flowers2022 from './flowers2022.jpeg'
-
+import entrevistaMidian from './entrevistaMidian.jpeg'
 
 import featured from './featured.mp4';
 
@@ -142,9 +142,12 @@ function WelcomePage() {
         thumbnail: flowersdia1,
         videoUrl:
           'https://bafybeicxq6qqa2vac2gyyrzaozo2dxbc6ozqiltrdyc6ac62ske2lc3gi4.ipfs.dweb.link/',
+      },
+      {
+        thumbnail: entrevistaMidian,
+        videoUrl:
+          'https://bafybeiepeuqmlimfansjlyevg3k6qiiln7oyo3lfhqj36iy4gj7ch3jptu.ipfs.dweb.link/',
       }
-      
-
   
   ];
 
