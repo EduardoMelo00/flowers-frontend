@@ -49,10 +49,10 @@ const LiveVideoPage = () => {
                 {/* <YouTube videoId={videoId} opts={opts} className="video"/>
        */}
                 <h1 className="countdown" style={{ color: 'white' }}>
-                    A transmissão acabou.
-                    {/* {hours}:{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}*/}
-                </h1> 
-            )
+                    A transmissão acabou, em breve o culto estará disponível nos destaques.
+                    {/* em : {hours}:{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds} */}
+                </h1>
+            
         </div>
     );
 }
