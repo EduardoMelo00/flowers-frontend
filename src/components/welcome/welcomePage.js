@@ -6,7 +6,6 @@ import logo from './logo.png';
 import thumbnail1 from './thumbnail1.jpg';
 import thumbnail2 from './thumbnail2.jpg';
 import thumbnail3 from './thumbnail3.jpg';
-import alexandra from './alexandra.jpeg';
 import iracet from './iracet.jpeg';
 import gabi from './gabi.jpeg';
 import priscila from './priscila.jpeg';
@@ -15,7 +14,6 @@ import lia from './lia.jpeg';
 import ceres from './ceres.jpeg'
 import flowersConference from './flowers2021.jpeg'
 import flowers2022 from './flowers2022.jpeg'
-import withAuth from '../withAuth/withAuth.js';  // or wherever you put the withAuth.js file
 
 
 import featured from './featured.mp4';
@@ -235,34 +233,34 @@ function WelcomePage() {
 
 
       <div className={styles['gallery-container']}>
-  <h2>Destaques</h2>
-  <div className={styles['video-row']} ref={videoRowRef4}>
-    {destaques.map((video, index) => (
-      <a
-        key={index}
-        href={`/youtube/${encodeURIComponent(video.videoUrl)}`}
-      >
-        <img
-          src={video.thumbnail}
-          alt="Video Thumbnail"
-          className={styles['video-thumbnail']}
-        />
-      </a>
-    ))}
-  </div>
-  <div
-    className={styles.arrow + ' ' + styles['arrow-left']}
-    onClick={() => scrollLeft(videoRowRef4)}
-  >
-    &lt;
-  </div>
-  <div
-    className={styles.arrow + ' ' + styles['arrow-right']}
-    onClick={() => scrollRight(videoRowRef4)}
-  >
-    &gt;
-  </div>
-</div>
+        <h2>Destaques</h2>
+        <div className={styles['video-row']} ref={videoRowRef4}>
+          {destaques.map((video, index) => (
+            <a
+              key={index}
+              href={`/video/${encodeURIComponent(video.videoUrl)}`}
+            >
+              <img
+                src={video.thumbnail}
+                alt="Video Thumbnail"
+                className={styles['video-thumbnail']}
+              />
+            </a>
+          ))}
+        </div>
+        <div
+          className={styles.arrow + ' ' + styles['arrow-left']}
+          onClick={() => scrollLeft(videoRowRef4)}
+        >
+          &lt;
+        </div>
+        <div
+          className={styles.arrow + ' ' + styles['arrow-right']}
+          onClick={() => scrollRight(videoRowRef4)}
+        >
+          &gt;
+        </div>
+      </div> 
 
 
       <div className={styles['gallery-container']}>
