@@ -172,7 +172,7 @@ function WelcomePage() {
         const response = await fetch(
           'https://flowers-node-backend-2c4af429ac26.herokuapp.com/api/auth/check-token',
           {
-            method: 'GET',
+            method: 'POST',
             credentials: 'include', // include, *same-origin, omit
           }
         );
