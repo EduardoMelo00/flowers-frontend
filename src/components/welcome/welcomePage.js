@@ -15,6 +15,9 @@ import ceres from './ceres.jpeg'
 import flowersConference from './flowers2021.jpeg'
 import flowers2022 from './flowers2022.jpeg'
 import entrevistaMidian from './entrevistaMidian.jpeg'
+import viviane23 from './viviane23.jpeg'
+import gabi23 from './gabi23.jpeg'
+
 
 import featured from './featured.mp4';
 
@@ -147,8 +150,23 @@ function WelcomePage() {
         thumbnail: entrevistaMidian,
         videoUrl:
           'https://bafybeiepeuqmlimfansjlyevg3k6qiiln7oyo3lfhqj36iy4gj7ch3jptu.ipfs.dweb.link/',
-      }
-  
+      },
+      {
+        thumbnail: viviane23,
+        videoUrl:
+          'https://bafybeif326fjiibt242x66whwogipvtc7b2x6jphigxjgtghmpaqxoztti.ipfs.dweb.link/',
+      },
+      {
+        thumbnail: gabi23,
+        videoUrl:
+          'https://bafybeif2vehfeooxtk2ishrwosfcw2tjfxaosl67ypeyt5excx7evfge6i.ipfs.dweb.link/',
+      } 
+      
+      
+      //https://nftstorage.link/ipfs/bafybeif2vehfeooxtk2ishrwosfcw2tjfxaosl67ypeyt5excx7evfge6i
+      
+      // https://nftstorage.link/ipfs/bafybeif326fjiibt242x66whwogipvtc7b2x6jphigxjgtghmpaqxoztti
+
   ];
 
   useEffect(() => {
