@@ -18,6 +18,9 @@ import entrevistaMidian from './entrevistaMidian.jpeg'
 import viviane23 from './viviane23.jpeg'
 import gabi23 from './gabi23.jpeg'
 import yoomiEntrevista from './yoomiEntrevista.jpeg'
+import vivianeEntrevista from './vivianeEntrevista.jpeg'
+import prelizabethEntrevista from './prelizabethEntrevista.jpeg'
+
 
 
 
@@ -171,7 +174,7 @@ function WelcomePage() {
           'https://bafybeif2vehfeooxtk2ishrwosfcw2tjfxaosl67ypeyt5excx7evfge6i.ipfs.dweb.link/',
       },
       {
-        thumbnail: prelizabeth,
+        thumbnail: prelizabethEntrevista,
         videoUrl:
           'https://bafybeif6sh4yclk6rqlvlpbqbcdpiwx7ndqjluu3oxzqedbgm6akbpfpja.ipfs.dweb.link/',
       }, 
