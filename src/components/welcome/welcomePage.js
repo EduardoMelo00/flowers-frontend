@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './welcomePage.module.css';
-import flowersdia1 from './flowersdia1.jpg';
+import flowersdia1 from './flowersdia1.jpeg';
 import logo from './logo.png';
 import thumbnail1 from './thumbnail1.jpg';
 import thumbnail2 from './thumbnail2.jpg';
@@ -17,6 +17,7 @@ import flowers2022 from './flowers2022.jpeg'
 import entrevistaMidian from './entrevistaMidian.jpeg'
 import viviane23 from './viviane23.jpeg'
 import gabi23 from './gabi23.jpeg'
+
 
 
 import featured from './featured.mp4';
