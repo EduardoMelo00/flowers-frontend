@@ -169,29 +169,21 @@ function WelcomePage() {
 
     const checkToken = async () => {
       try {
-        const response = await fetch(
-          'https://flowers-node-backend-2c4af429ac26.herokuapp.com/api/auth/check-token',
-          {
-            method: 'GET',
-            credentials: 'include', // include, *same-origin, omit
-          }
-        );
+
+        const emailStorage = localStorage.getItem('flowersEmail');
+
 
         if (Date.now() - lastActive > 4 * 60 * 60 * 1000) {
           navigate('/login');
         }
 
-        if (response.ok) {
-          // Token is valid, user is authenticated
+        if (emailStorage) {
+          // Token is present, user is authenticated
           console.log('User is authenticated');
-        } else if (response.status === 401) {
-          // Token is missing or expired, user is not authenticated
-          console.log('User is not authenticated');
-          navigate('/login');
         } else {
-          // Other error status, handle it accordingly
-          console.log('Error:', response.statusText);
-          // Handle the error case, such as displaying an error message
+            
+          console.log('User is not authenticated');
+          navigate('/login')
         }
       } catch (error) {
         console.error('Error:', error.message);

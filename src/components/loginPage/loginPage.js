@@ -45,7 +45,7 @@ function LoginPage() {
       }
 
       if (response.status === 200) {
-        // Show a message that the link was sent to the user's email
+        localStorage.setItem('flowersEmail', email);
         navigate('/welcome');
       }
     } catch (error) {
