@@ -19,7 +19,7 @@ import viviane23 from './viviane23.jpeg'
 import gabi23 from './gabi23.jpeg'
 
 
-
+    
 import featured from './featured.mp4';
 
 function WelcomePage() {
