@@ -20,7 +20,7 @@ import gabi23 from './gabi23.jpeg'
 import yoomiEntrevista from './yoomiEntrevista.jpeg'
 import vivianeEntrevista from './vivianeEntrevista.jpeg'
 import prelizabethEntrevista from './prelizabethEntrevista.jpeg'
-
+import cultotarde from './cultotarde.jpeg'
 
 
 
@@ -173,6 +173,14 @@ function WelcomePage() {
         videoUrl:
           'https://bafybeif2vehfeooxtk2ishrwosfcw2tjfxaosl67ypeyt5excx7evfge6i.ipfs.dweb.link/',
       },
+
+      {
+        thumbnail: cultotarde,
+        videoUrl:
+          'https://bafybeieuxxjk5zgkjajkqs6vi4ysvkgn55oguhkdakj7sirr3opm3fulhu.ipfs.dweb.link/',
+      },
+      
+
       {
         thumbnail: prelizabethEntrevista,
         videoUrl:
