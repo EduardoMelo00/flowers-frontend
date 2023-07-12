@@ -21,9 +21,9 @@ import yoomiEntrevista from './yoomiEntrevista.jpeg'
 import vivianeEntrevista from './vivianeEntrevista.jpeg'
 import prelizabethEntrevista from './prelizabethEntrevista.jpeg'
 import cultotarde from './cultotarde.jpeg'
-
-
-
+import cultomanha from './cultomanha.png'
+import entrevistachantell from './entrevistachantell.png'
+import entrevistapravictoria from './entrevistaPravictoria.png'
 
     
 import featured from './featured.mp4';
@@ -174,6 +174,13 @@ function WelcomePage() {
           'https://bafybeif2vehfeooxtk2ishrwosfcw2tjfxaosl67ypeyt5excx7evfge6i.ipfs.dweb.link/',
       },
 
+
+      {
+        thumbnail: cultomanha,
+        videoUrl:
+          'https://bafybeicymac36j3hfsewcc7ornqmmccf5cc4jmcnu4mz2j45ngmf5amwzm.ipfs.dweb.link/',
+      },
+
       {
         thumbnail: cultotarde,
         videoUrl:
@@ -185,13 +192,27 @@ function WelcomePage() {
         thumbnail: prelizabethEntrevista,
         videoUrl:
           'https://bafybeif6sh4yclk6rqlvlpbqbcdpiwx7ndqjluu3oxzqedbgm6akbpfpja.ipfs.dweb.link/',
-      }, 
+      },
+
       {
         thumbnail: yoomiEntrevista,
         videoUrl:
           'https://bafybeiamin6hnglbzdvmqehf6hp2pqcdimy4n2tpbrenlb27gt73saylrq.ipfs.dweb.link/',
-      }
+      },
 
+      {
+        thumbnail: entrevistachantell,
+        videoUrl:
+          'https://bafybeicz3pd5b6msib5i3ketrb5n2f633lzgyobxlayxugqpqcaowul36i.ipfs.dweb.link/',
+      },
+
+      {
+        thumbnail: entrevistapravictoria,
+        videoUrl:
+          'https://bafybeigfs3goi4wjqkz6ai4s352hnva4nr37okybjtkvowp2exl4fb5ium.ipfs.dweb.link/',
+      }
+     
+    
   
 
   ];
