@@ -24,7 +24,7 @@ import cultotarde from './cultotarde.jpeg'
 import cultomanha from './cultomanha.png'
 import entrevistachantell from './entrevistachantell.png'
 import entrevistapravictoria from './entrevistaPravictoria.png'
-
+import entrevistaceres from './entrevistaceres.png'
     
 import featured from './featured.mp4';
 
@@ -210,11 +210,16 @@ function WelcomePage() {
         thumbnail: entrevistapravictoria,
         videoUrl:
           'https://bafybeigfs3goi4wjqkz6ai4s352hnva4nr37okybjtkvowp2exl4fb5ium.ipfs.dweb.link/',
+      },
+      {
+        thumbnail: entrevistaceres,
+        videoUrl:
+          'https://bafybeieie36redp47sk67uqxp4j7k3acxqmnirqh7ey2olcm4omzzboq7u.ipfs.dweb.link/',
       }
-     
-    
-  
 
+
+    
+     
   ];
 
   useEffect(() => {
