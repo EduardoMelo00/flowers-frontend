@@ -10,7 +10,7 @@ const withAuth = (ComponentToProtect) => {
       const checkToken = async () => {
         try {
           const response = await fetch(
-            'https://flowers-backend-1d1a3a96fecc.herokuapp.com//api/auth/check-token',
+            'https://flowers-backend-1d1a3a96fecc.herokuapp.com/api/auth/check-token',
             {
               method: 'GET',
               credentials: 'include', // include, *same-origin, omit

@@ -19,7 +19,7 @@ const ChangePassword = () => {
     }
 
     try {
-      const response = await axios.post('https://flowers-backend-1d1a3a96fecc.herokuapp.com//api/auth/change-password', {
+      const response = await axios.post('https://flowers-backend-1d1a3a96fecc.herokuapp.com/api/auth/change-password', {
         email,
         newPassword,
         confirmPassword,
