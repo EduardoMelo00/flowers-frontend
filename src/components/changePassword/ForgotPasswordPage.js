@@ -9,7 +9,7 @@ function ForgotPasswordPage() {
     event.preventDefault();
 
     try {
-      const response = await axios.post('https://flowers-node-backend-2c4af429ac26.herokuapp.com/api/auth/forgot-password', { email });
+      const response = await axios.post('https://flowers-backend-1d1a3a96fecc.herokuapp.com//api/auth/forgot-password', { email });
 
       if (response.status === 200) {
         setMessage('Um link para resetar a senha foi enviado para o seu e-mail');
