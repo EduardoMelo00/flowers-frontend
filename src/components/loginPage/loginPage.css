@@ -24,6 +24,7 @@ body.login-page {
 .logo {
   width: 500px;  /* Increase the width */
   height: auto;  /* Make sure height scales proportionally */
+  padding-bottom: 170px;
 }
 
 .login-container {
