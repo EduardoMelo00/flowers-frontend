@@ -92,7 +92,7 @@ function LoginPage() {
           <a href="/forgot-password">Esqueceu a Senha ?</a>
         </div>
         <div className="help">
-          <a href="https://wa.me/8197092708">Precisa de Ajuda ?</a>
+          <a href="https://wa.me/48984863659">Precisa de Ajuda ?</a>
         </div>
       </div>
     </div>
