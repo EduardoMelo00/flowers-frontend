@@ -22,9 +22,10 @@ body.login-page {
 }
 
 .logo {
-  width: 500px;  /* Increase the width */
+  width: 400px;  /* Increase the width */
   height: auto;  /* Make sure height scales proportionally */
-  padding-bottom: 190px;
+  padding-bottom: 260px;
+  padding-left: 20px;
 }
 
 .login-container {
