@@ -37,16 +37,16 @@ function LoginPage() {
     event.preventDefault();
 
     try {
-      const response = await axios.post('https://localhost:3001/api/auth/login', { email, password });
+      const response = await axios.post('https://flowers-backend-1d1a3a96fecc.herokuapp.com/api/auth/login', { email, password });
 
       if (response.data.firstLogin) {
         // Redirect to change password page
         window.location.href = '/change-password';
       }
-      navigate('/welcome');
+
       if (response.status === 200) {
         localStorage.setItem('flowersEmail', email);
-       
+        navigate('/welcome');
       }
     } catch (error) {
       if (error.response) {
