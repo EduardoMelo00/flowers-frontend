@@ -25,6 +25,7 @@ import cultomanha from './cultomanha.png'
 import entrevistachantell from './entrevistachantell.png'
 import entrevistapravictoria from './entrevistaPravictoria.png'
 import entrevistaceres from './entrevistaceres.png'
+import flowers2024dia01 from './flowers2024dia01.jpeg';
     
 import featured from './featured.mp4';
 
@@ -33,6 +34,7 @@ function WelcomePage() {
   const videoRowRef2 = useRef(null);
   const videoRowRef3 = useRef(null);
   const videoRowRef4 = useRef(null);
+  const videoRowRef5 = useRef(null);
   const navigate = useNavigate();
 
   const [lastActive, setLastActive] = useState(Date.now());
@@ -147,7 +149,7 @@ function WelcomePage() {
         'https://bafybeibnpid64ahnunq6uvvd7itbqfuwygoipnra5olmq2pzm5ed7fhzse.ipfs.dweb.link/',
     },
   ]
-    const destaques = [
+    const videosFlowers2023 = [
       {
         thumbnail: flowersdia1,
         videoUrl:
@@ -216,10 +218,14 @@ function WelcomePage() {
         videoUrl:
           'https://bafybeieie36redp47sk67uqxp4j7k3acxqmnirqh7ey2olcm4omzzboq7u.ipfs.dweb.link/',
       }
+  ]
 
-
-    
-     
+  const destaques = [
+    {
+      thumbnail: flowers2024dia01,
+      videoUrl:
+      'https://flowersvideos.s3.amazonaws.com/FLOWERS+2024+-+CASSIANE+-+CERES+SILVA+-+DIA+01.mp4'
+    }
   ];
 
   useEffect(() => {
@@ -360,10 +366,10 @@ function WelcomePage() {
   </div>
 </div>
 
-      <div className={styles['gallery-container']}>
-        <h2>Flowers 2022</h2>
+<div className={styles['gallery-container']}>
+        <h2>Flowers 2023</h2>
         <div className={styles['video-row']} ref={videoRowRef2}>
-          {videosFlowers2022.map((video, index) => (
+          {videosFlowers2023.map((video, index) => (
             <a
               key={index}
               href={`/video/${encodeURIComponent(video.videoUrl)}`}
@@ -388,7 +394,36 @@ function WelcomePage() {
         >
           &gt;
         </div>
+      </div>
 
+      <div className={styles['gallery-container']}>
+        <h2>Flowers 2022</h2>
+        <div className={styles['video-row']} ref={videoRowRef5}>
+          {videosFlowers2022.map((video, index) => (
+            <a
+              key={index}
+              href={`/video/${encodeURIComponent(video.videoUrl)}`}
+            >
+              <img
+                src={video.thumbnail}
+                alt="Video Thumbnail"
+                className={styles['video-thumbnail']}
+              />
+            </a>
+          ))}
+        </div>
+        <div
+          className={styles.arrow + ' ' + styles['arrow-left']}
+          onClick={() => scrollLeft(videoRowRef5)}
+        >
+          &lt;
+        </div>
+        <div
+          className={styles.arrow + ' ' + styles['arrow-right']}
+          onClick={() => scrollRight(videoRowRef5)}
+        >
+          &gt;
+        </div>
       </div>
 
       <div className={styles['gallery-container']}>
