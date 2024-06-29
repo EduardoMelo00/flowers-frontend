@@ -28,6 +28,10 @@ import entrevistaceres from './entrevistaceres.png'
 import flowers2024dia01 from './flowers2024dia01.jpeg';
 import entrevistaceres2024 from './entrevistaceres2024.jpg';
 import entrevistacassiane from './entrevistacassiane.jpg';
+import flowersdia02 from './flowersdia02.jpeg';
+import entrevistasarah from './entrevistasarah.jpg';
+import entrevistaviviane from './entrevistaviviane.jpg';
+
 
     
 import featured from './featured.mp4';
@@ -238,10 +242,22 @@ function WelcomePage() {
       thumbnail: entrevistaceres2024,
       videoUrl:
       'https://flowersvideos.s3.amazonaws.com/Entrevista+-+Ceres.mp4'
+    },
+    {
+      thumbnail: flowersdia02,
+      videoUrl:
+      'https://flowersvideos.s3.amazonaws.com/MultiCorder1+-+BLACKMAGIC+-+28+junho+2024+-+07-07-30+.mp4'
+    },
+    {
+      thumbnail: entrevistasarah,
+      videoUrl:
+      'https://flowersvideos.s3.amazonaws.com/Entrevista+-+Sarah+Farias.mp4'
+    },
+    {
+      thumbnail: entrevistaviviane,
+      videoUrl:
+      'https://flowersvideos.s3.amazonaws.com/Entrevista+-+Viviane+Martinello.mp4'
     }
-    
-    
-
   ];
 
   useEffect(() => {
