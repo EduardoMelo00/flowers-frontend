@@ -26,6 +26,9 @@ import entrevistachantell from './entrevistachantell.png'
 import entrevistapravictoria from './entrevistaPravictoria.png'
 import entrevistaceres from './entrevistaceres.png'
 import flowers2024dia01 from './flowers2024dia01.jpeg';
+import entrevistaceres2024 from './entrevistaceres2024.jpg';
+import entrevistacassiane from './entrevistacassiane.jpeg';
+
     
 import featured from './featured.mp4';
 
@@ -225,7 +228,20 @@ function WelcomePage() {
       thumbnail: flowers2024dia01,
       videoUrl:
       'https://flowersvideos.s3.amazonaws.com/FLOWERS+2024+-+CASSIANE+-+CERES+SILVA+-+DIA+01.mp4'
+    }, 
+    {
+      thumbnail: entrevistacassiane,
+      videoUrl:
+      'https://flowersvideos.s3.amazonaws.com/Entrevista+-+Cassiane.mp4'
+    },
+    {
+      thumbnail: entrevistaceres2024,
+      videoUrl:
+      'https://flowersvideos.s3.amazonaws.com/Entrevista+-+Ceres.mp4'
     }
+    
+    
+
   ];
 
   useEffect(() => {
