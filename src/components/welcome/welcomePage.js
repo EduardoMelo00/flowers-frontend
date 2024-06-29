@@ -27,7 +27,7 @@ import entrevistapravictoria from './entrevistaPravictoria.png'
 import entrevistaceres from './entrevistaceres.png'
 import flowers2024dia01 from './flowers2024dia01.jpeg';
 import entrevistaceres2024 from './entrevistaceres2024.jpg';
-import entrevistacassiane from './entrevistacassiane.jpeg';
+import entrevistacassiane from './entrevistacassiane.jpg';
 
     
 import featured from './featured.mp4';
