@@ -32,6 +32,7 @@ import flowersdia02 from './flowersdia02.jpeg';
 import entrevistasarah from './entrevistasarah.jpg';
 import entrevistaviviane from './entrevistaviviane.jpg';
 import flowerstarde from './flowerstarde.jpeg';
+import thumbmanha from './thumbmanha.jpeg';
 
     
 import featured from './featured.mp4';
@@ -259,13 +260,15 @@ function WelcomePage() {
       'https://flowersvideos.s3.amazonaws.com/Entrevista+-+Viviane+Martinello.mp4'
     },
     {
+      thumbnail: thumbmanha,
+      videoUrl:
+      'https://flowersvideos.s3.amazonaws.com/sabadomanha.mp4'
+    },
+    {
       thumbnail: flowerstarde,
       videoUrl:
       'https://flowersvideos.s3.amazonaws.com/MultiCorder1+-+BLACKMAGIC+-+29+junho+2024+-+02-09-51+.mp4'
     }
-
-
-    
   ];
 
   useEffect(() => {
