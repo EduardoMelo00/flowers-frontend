@@ -33,6 +33,9 @@ import entrevistasarah from './entrevistasarah.jpg';
 import entrevistaviviane from './entrevistaviviane.jpg';
 import flowerstarde from './flowerstarde.jpeg';
 import thumbmanha from './thumbmanha.jpeg';
+import sabadonoite from './sabadonoite.jpg';
+
+
 
     
 import featured from './featured.mp4';
@@ -268,7 +271,16 @@ function WelcomePage() {
       thumbnail: flowerstarde,
       videoUrl:
       'https://flowersvideos.s3.amazonaws.com/MultiCorder1+-+BLACKMAGIC+-+29+junho+2024+-+02-09-51+.mp4'
+    },
+    {
+      thumbnail: sabadonoite,
+      videoUrl:
+      'https://flowersvideos.s3.amazonaws.com/FLOWERS+2024+-+NOITE+-+DIA+03.mp4'
     }
+
+
+    
+
   ];
 
   useEffect(() => {
