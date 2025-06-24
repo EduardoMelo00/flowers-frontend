@@ -10,7 +10,7 @@ function AdminLoginPage() {
     event.preventDefault();
 
     try {
-      const response = await axios.post('https://flowers-backend-1d1a3a96fecc.herokuapp.com/api/auth/add-user', { email, nome });
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/add-user`, { email, nome });
 
       if (response.status === 201) {
         // Show a message that the user was created successfully
@@ -29,7 +29,7 @@ function AdminLoginPage() {
 
   const checkAdminAccess = async () => {
     try {
-      const response = await axios.get('https://flowers-backend-1d1a3a96fecc.herokuapp.com/api/auth/check-admin');
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/check-admin`);
 
       if (response.status === 200) {
         // Admin has access, proceed to the admin dashboard or other admin routes

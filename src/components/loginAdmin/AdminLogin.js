@@ -14,7 +14,7 @@ function AdminLogin() {
     event.preventDefault();
 
     try {
-      const response = await axios.post('https://flowers-backend-1d1a3a96fecc.herokuapp.com/api/auth/login-admin', { email, password });
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login-admin`, { email, password });
 
       if (response.status === 200) {
         // Successful login
