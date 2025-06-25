@@ -14,15 +14,16 @@ function AdminLogin() {
     event.preventDefault();
 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login-admin`, { email, password });
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login-admin`, 
+        { email, password },
+        { withCredentials: true } // ⭐ CRUCIAL: Enviar cookies/sessões
+      );
 
       if (response.status === 200) {
         // Successful login
         console.log('Login successful');
-        if (response.status === 200) {
-          // Show a message that the link was sent to the user's email
-          navigate('/login-admin-page');
-        }
+        localStorage.setItem('flowersEmail', email); // Guardar email para referência
+        navigate('/login-admin-page');
       }
     } catch (error) {
       if (error.response) {

@@ -37,7 +37,10 @@ function LoginPage() {
     event.preventDefault();
 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, { email, password });
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, 
+        { email, password },
+        { withCredentials: true } // ⭐ CRUCIAL: Enviar cookies/sessões
+      );
 
       if (response.data.firstLogin) {
         // Redirect to change password page

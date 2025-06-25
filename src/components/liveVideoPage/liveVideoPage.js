@@ -15,10 +15,18 @@ const LiveVideoPage = () => {
 
     const fetchLiveVideoUrl = async () => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/live-video-url`);
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/live-video-url`, {
+                credentials: 'include' // ⭐ CRUCIAL: Enviar cookies/sessões
+            });
             if (response.ok) {
                 const data = await response.json();
                 if (data.url) {
+                    // Verificar se a URL é apenas # (indica "sem vídeo")
+                    if (data.url.trim() === '#') {
+                        setError('📺 Transmissão ao vivo temporariamente indisponível');
+                        return;
+                    }
+                    
                     const extractedVideoId = extractVideoId(data.url);
                     if (extractedVideoId) {
                         setVideoId(extractedVideoId);
@@ -27,7 +35,7 @@ const LiveVideoPage = () => {
                         setError('URL do vídeo inválida');
                     }
                 } else {
-                    setError('Nenhum vídeo ao vivo configurado no momento');
+                    setError('📺 Nenhuma transmissão ao vivo configurada no momento');
                 }
             } else {
                 setError('Erro ao carregar vídeo ao vivo');
@@ -97,14 +105,39 @@ const LiveVideoPage = () => {
     }
 
     if (error) {
+        // Verificar se é uma mensagem amigável (com emoji) ou erro técnico
+        const isTemporaryUnavailable = error.includes('📺');
+        
         return (
             <div className="video-container">
                 <h1 className="countdown" style={{ color: 'white' }}>
                     {error}
                 </h1>
                 <p style={{ color: 'rgba(255, 255, 255, 0.7)', textAlign: 'center', marginTop: '20px' }}>
-                    Tente novamente mais tarde ou entre em contato com o suporte.
+                    {isTemporaryUnavailable 
+                        ? 'Fique ligado! A transmissão começará em breve. Atualize a página periodicamente.'
+                        : 'Tente novamente mais tarde ou entre em contato com o suporte.'
+                    }
                 </p>
+                {isTemporaryUnavailable && (
+                    <div style={{ textAlign: 'center', marginTop: '30px' }}>
+                        <button 
+                            onClick={() => window.location.reload()} 
+                            style={{
+                                backgroundColor: '#e50914',
+                                color: 'white',
+                                border: 'none',
+                                padding: '12px 24px',
+                                borderRadius: '6px',
+                                cursor: 'pointer',
+                                fontSize: '16px',
+                                fontWeight: '500'
+                            }}
+                        >
+                            🔄 Atualizar página
+                        </button>
+                    </div>
+                )}
             </div>
         );
     }

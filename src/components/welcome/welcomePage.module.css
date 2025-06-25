@@ -341,6 +341,12 @@ h2{
     align-items: center;
   }
 
+  /* Ajuste do indicador para mobile */
+  .liveIndicatorGlow {
+    font-size: 10px;
+    margin-left: 4px;
+  }
+
   /* Melhor área de toque para avatar */
   .user-avatar {
     min-width: 44px;
@@ -366,6 +372,11 @@ h2{
   .nav-links a {
     font-size: 1rem;
     letter-spacing: 1.5px;
+  }
+
+  /* Ajuste do indicador para tablets */
+  .liveIndicatorGlow {
+    font-size: 11px;
   }
 
   .featured-video {
@@ -400,6 +411,12 @@ h2{
   .nav-links a {
     font-size: 0.8rem;
     letter-spacing: 0.5px;
+  }
+
+  /* Ajuste do indicador para smartphones pequenos */
+  .liveIndicatorGlow {
+    font-size: 9px;
+    margin-left: 3px;
   }
 
   .featured-video {
@@ -495,4 +512,41 @@ h2{
   .nav-links {
     gap: 30px;
   }
+}
+
+/* Animação para o indicador ao vivo */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Classes para o indicador ao vivo */
+.liveIndicator {
+  font-size: 12px;
+  animation: pulse 1.5s infinite;
+  color: #ff4444;
+  margin-left: 8px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Versão alternativa com glow */
+.liveIndicatorGlow {
+  font-size: 12px;
+  animation: pulse 1.5s infinite;
+  color: #ff4444;
+  margin-left: 8px;
+  display: inline-block;
+  vertical-align: middle;
+  text-shadow: 0 0 8px #ff4444, 0 0 16px #ff4444;
 }

@@ -56,6 +56,7 @@ function WelcomePage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [liveVideoUrl, setLiveVideoUrl] = useState('');
+  const [hasValidLiveVideo, setHasValidLiveVideo] = useState(false);
 
   const videos = [
     // Entrevistas 2024
@@ -278,6 +279,7 @@ function WelcomePage() {
           headers: {
             'Content-Type': 'application/json',
           },
+          credentials: 'include', // ⭐ CRUCIAL: Enviar cookies/sessões
           body: JSON.stringify({ token }),
         });
 
@@ -299,13 +301,18 @@ function WelcomePage() {
     // Função para buscar o link do vídeo ao vivo
     const fetchLiveVideoUrl = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/live-video-url`);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/live-video-url`, {
+          credentials: 'include' // ⭐ CRUCIAL: Enviar cookies/sessões
+        });
         if (response.ok) {
           const data = await response.json();
-          setLiveVideoUrl(data.url || '');
+          const url = data.url || '';
+          setLiveVideoUrl(url);
+          setHasValidLiveVideo(isValidVideoUrl(url)); // ⭐ Verificar se a URL é válida
         }
       } catch (error) {
         console.error('Erro ao buscar URL do vídeo ao vivo:', error);
+        setHasValidLiveVideo(false);
       }
     };
 
@@ -332,6 +339,18 @@ function WelcomePage() {
     navigate('/login');
   };
 
+  // Função para verificar se a URL do vídeo é válida
+  const isValidVideoUrl = (url) => {
+    if (!url || url.trim() === '' || url.trim() === '#') {
+      return false;
+    }
+    
+    // Verificar se é uma URL do YouTube válida
+    const youtubeRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(youtubeRegex);
+    return match && match[2] && match[2].length === 11;
+  };
+
   // Função para toggle do menu do usuário
   const toggleUserMenu = () => {
     setShowUserMenu(!showUserMenu);
@@ -348,7 +367,14 @@ function WelcomePage() {
             <a href="#">Home</a>
           </li>
           <li>
-            <a href="/live">Ao vivo</a>
+            <a href="/live">
+              Ao vivo
+              {hasValidLiveVideo && (
+                <span className={styles.liveIndicatorGlow}>
+                  🔴
+                </span>
+              )}
+            </a>
           </li>
           <li>
             <a href="https://wa.me/48984863659" target="_blank" rel="noopener noreferrer">Fale Conosco</a>

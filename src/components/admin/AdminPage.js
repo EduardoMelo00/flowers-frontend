@@ -29,6 +29,7 @@ const AdminPage = () => {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include', // ⭐ CRUCIAL: Enviar cookies/sessões
         body: JSON.stringify({ token }),
       });
 
@@ -48,7 +49,9 @@ const AdminPage = () => {
 
   const fetchCurrentUrl = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/live-video-url`);
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/live-video-url`, {
+        credentials: 'include' // ⭐ CRUCIAL: Enviar cookies/sessões
+      });
       if (response.ok) {
         const data = await response.json();
         setLiveVideoUrl(data.url || '');
@@ -75,6 +78,7 @@ const AdminPage = () => {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include', // ⭐ CRUCIAL: Enviar cookies/sessões
         body: JSON.stringify({ 
           token,
           url: liveVideoUrl 
