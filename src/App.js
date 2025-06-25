@@ -12,6 +12,7 @@ import LiveVideoPage from './components/liveVideoPage/liveVideoPage.js';
 import YoutubePage from './components/youtubePage/youtubePage.js';
 import AdminLogin from './components/loginAdmin/AdminLogin.js';
 import AdminLoginPage from './components/loginAdmin/AdminLoginPage.js';
+import AdminPage from './components/admin/AdminPage.js';
 
 
 
@@ -32,6 +33,7 @@ function App() {
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/login-admin" element={<AdminLogin />} />
         <Route path="/login-admin-page" element={<AdminLoginPage />} />
+        <Route path="/admin" element={<AdminPage />} />
 
         
         

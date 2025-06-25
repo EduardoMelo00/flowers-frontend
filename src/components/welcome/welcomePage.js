@@ -54,6 +54,8 @@ function WelcomePage() {
   const [userEmail, setUserEmail] = useState('');
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [liveVideoUrl, setLiveVideoUrl] = useState('');
 
   const videos = [
     // Entrevistas 2024
@@ -263,33 +265,52 @@ function WelcomePage() {
   }, [navigate]);
 
   useEffect(() => {
-
     const checkToken = async () => {
       try {
-
-        const emailStorage = localStorage.getItem('flowersEmail');
-
-
-        if (Date.now() - lastActive > 4 * 60 * 60 * 1000) {
+        const token = localStorage.getItem('flowersEmail');
+        if (!token) {
           navigate('/login');
+          return;
         }
 
-        if (emailStorage) {
-          // Token is present, user is authenticated
-          console.log('User is authenticated');
-          setUserEmail(emailStorage);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/verify-token`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ token }),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setUserEmail(data.email);
+          setIsAdmin(data.isAdmin || false); // Verifica se é admin
         } else {
-            
-          console.log('User is not authenticated');
-          navigate('/login')
-        }   
+          localStorage.removeItem('flowersEmail');
+          navigate('/login');
+        }
       } catch (error) {
-        console.error('Error:', error.message);
-        // Handle the error case, such as displaying an error message
+        console.error('Erro ao verificar token:', error);
+        localStorage.removeItem('flowersEmail');
+        navigate('/login');
+      }
+    };
+
+    // Função para buscar o link do vídeo ao vivo
+    const fetchLiveVideoUrl = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/live-video-url`);
+        if (response.ok) {
+          const data = await response.json();
+          setLiveVideoUrl(data.url || '');
+        }
+      } catch (error) {
+        console.error('Erro ao buscar URL do vídeo ao vivo:', error);
       }
     };
 
     checkToken();
+    fetchLiveVideoUrl();
   }, [navigate]);
 
   const scrollLeft = (ref) => {
@@ -342,6 +363,11 @@ function WelcomePage() {
               <div className={styles['user-menu-item']}>
                 <strong>Email:</strong> {userEmail}
               </div>
+              {isAdmin && (
+                <div className={styles['user-menu-item']} onClick={() => navigate('/admin')}>
+                  Administração
+                </div>
+              )}
               <div className={styles['user-menu-item']} onClick={handleLogout}>
                 Logout
               </div>
