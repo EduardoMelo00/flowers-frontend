@@ -51,53 +51,56 @@ function WelcomePage() {
   const [lastActive, setLastActive] = useState(Date.now());
   const [show2024Section, setShow2024Section] = useState(true);
   const [showDestaqueSection, setShowDestaqueSection] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const videos = [
- 
+    // Entrevistas 2024
     {
-      thumbnail: iracet,
-      videoUrl:
-        'VZ1jdPLHhl0',
+      thumbnail: entrevistacassiane,
+      videoUrl: 'https://flowersvideos.s3.amazonaws.com/Entrevista+-+Cassiane.mp4',
     },
     {
-      thumbnail: gabi,
-      videoUrl:
-        'FC78HqYp_6c',
+      thumbnail: entrevistaceres2024,
+      videoUrl: 'https://flowersvideos.s3.amazonaws.com/Entrevista+-+Ceres.mp4',
     },
     {
-      thumbnail: thumbnail1,
-      videoUrl:
-        '5mviVdQPi9w',
+      thumbnail: entrevistasarah,
+      videoUrl: 'https://flowersvideos.s3.amazonaws.com/Entrevista+-+Sarah+Farias.mp4',
     },
     {
-      thumbnail: thumbnail2,
-      videoUrl:
-        'X6Wa9Hp_TwM',
+      thumbnail: entrevistaviviane,
+      videoUrl: 'https://flowersvideos.s3.amazonaws.com/Entrevista+-+Viviane+Martinello.mp4',
+    },
+    // Entrevistas 2023
+    {
+      thumbnail: entrevistaMidian,
+      videoUrl: 'https://bafybeiepeuqmlimfansjlyevg3k6qiiln7oyo3lfhqj36iy4gj7ch3jptu.ipfs.dweb.link/',
     },
     {
-      thumbnail: priscila,
-      videoUrl:
-        'fHMyqLT2H5o',
+      thumbnail: vivianeEntrevista,
+      videoUrl: 'https://bafybeihczozxdtkaxe2np2p6ykbwzgkwxlcgzmizyu6dju73m3i77izaki.ipfs.dweb.link/',
     },
     {
-      thumbnail: thumbnail3,
-      videoUrl:
-        'jZ-lZEG50lw',
+      thumbnail: prelizabethEntrevista,
+      videoUrl: 'https://bafybeif6sh4yclk6rqlvlpbqbcdpiwx7ndqjluu3oxzqedbgm6akbpfpja.ipfs.dweb.link/',
     },
     {
-      thumbnail: marisa,
-      videoUrl:
-        'OKhTOkPtt_o',
+      thumbnail: yoomiEntrevista,
+      videoUrl: 'https://bafybeiamin6hnglbzdvmqehf6hp2pqcdimy4n2tpbrenlb27gt73saylrq.ipfs.dweb.link/',
     },
     {
-      thumbnail: lia,
-      videoUrl:
-        'mzDPSR-la-c',
+      thumbnail: entrevistachantell,
+      videoUrl: 'https://bafybeicz3pd5b6msib5i3ketrb5n2f633lzgyobxlayxugqpqcaowul36i.ipfs.dweb.link/',
     },
     {
-      thumbnail: ceres,
-      videoUrl:
-        'Ju5pkT34z9A',
+      thumbnail: entrevistapravictoria,
+      videoUrl: 'https://bafybeigfs3goi4wjqkz6ai4s352hnva4nr37okybjtkvowp2exl4fb5ium.ipfs.dweb.link/',
+    },
+    {
+      thumbnail: entrevistaceres,
+      videoUrl: 'https://bafybeieie36redp47sk67uqxp4j7k3acxqmnirqh7ey2olcm4omzzboq7u.ipfs.dweb.link/',
     },
   ];
 
@@ -169,69 +172,26 @@ function WelcomePage() {
           'https://bafybeicxq6qqa2vac2gyyrzaozo2dxbc6ozqiltrdyc6ac62ske2lc3gi4.ipfs.dweb.link/',
       },
       {
-        thumbnail: entrevistaMidian,
-        videoUrl:
-          'https://bafybeiepeuqmlimfansjlyevg3k6qiiln7oyo3lfhqj36iy4gj7ch3jptu.ipfs.dweb.link/',
-      },
-      {
         thumbnail: viviane23,
         videoUrl:
           'https://bafybeif326fjiibt242x66whwogipvtc7b2x6jphigxjgtghmpaqxoztti.ipfs.dweb.link/',
       },
       {
-        thumbnail: vivianeEntrevista,
-        videoUrl:
-          'https://bafybeihczozxdtkaxe2np2p6ykbwzgkwxlcgzmizyu6dju73m3i77izaki.ipfs.dweb.link/',
-      }, 
-      {
         thumbnail: gabi23,
         videoUrl:
           'https://bafybeif2vehfeooxtk2ishrwosfcw2tjfxaosl67ypeyt5excx7evfge6i.ipfs.dweb.link/',
       },
-
-
       {
         thumbnail: cultomanha,
         videoUrl:
           'https://bafybeicymac36j3hfsewcc7ornqmmccf5cc4jmcnu4mz2j45ngmf5amwzm.ipfs.dweb.link/',
       },
-
       {
         thumbnail: cultotarde,
         videoUrl:
           'https://bafybeieuxxjk5zgkjajkqs6vi4ysvkgn55oguhkdakj7sirr3opm3fulhu.ipfs.dweb.link/',
       },
-      
-
-      {
-        thumbnail: prelizabethEntrevista,
-        videoUrl:
-          'https://bafybeif6sh4yclk6rqlvlpbqbcdpiwx7ndqjluu3oxzqedbgm6akbpfpja.ipfs.dweb.link/',
-      },
-
-      {
-        thumbnail: yoomiEntrevista,
-        videoUrl:
-          'https://bafybeiamin6hnglbzdvmqehf6hp2pqcdimy4n2tpbrenlb27gt73saylrq.ipfs.dweb.link/',
-      },
-
-      {
-        thumbnail: entrevistachantell,
-        videoUrl:
-          'https://bafybeicz3pd5b6msib5i3ketrb5n2f633lzgyobxlayxugqpqcaowul36i.ipfs.dweb.link/',
-      },
-
-      {
-        thumbnail: entrevistapravictoria,
-        videoUrl:
-          'https://bafybeigfs3goi4wjqkz6ai4s352hnva4nr37okybjtkvowp2exl4fb5ium.ipfs.dweb.link/',
-      },
-      {
-        thumbnail: entrevistaceres,
-        videoUrl:
-          'https://bafybeieie36redp47sk67uqxp4j7k3acxqmnirqh7ey2olcm4omzzboq7u.ipfs.dweb.link/',
-      }
-  ]
+    ]
 
   const videosFlowers2024 = [
     {
@@ -240,29 +200,9 @@ function WelcomePage() {
         'https://flowersvideos.s3.amazonaws.com/FLOWERS+2024+-+CASSIANE+-+CERES+SILVA+-+DIA+01.mp4',
     },
     {
-      thumbnail: entrevistacassiane,
-      videoUrl:
-        'https://flowersvideos.s3.amazonaws.com/Entrevista+-+Cassiane.mp4',
-    },
-    {
-      thumbnail: entrevistaceres2024,
-      videoUrl:
-        'https://flowersvideos.s3.amazonaws.com/Entrevista+-+Ceres.mp4',
-    },
-    {
       thumbnail: flowersdia02,
       videoUrl:
         'https://flowersvideos.s3.amazonaws.com/MultiCorder1+-+BLACKMAGIC+-+28+junho+2024+-+07-07-30+.mp4',
-    },
-    {
-      thumbnail: entrevistasarah,
-      videoUrl:
-        'https://flowersvideos.s3.amazonaws.com/Entrevista+-+Sarah+Farias.mp4',
-    },
-    {
-      thumbnail: entrevistaviviane,
-      videoUrl:
-        'https://flowersvideos.s3.amazonaws.com/Entrevista+-+Viviane+Martinello.mp4',
     },
     {
       thumbnail: thumbmanha,
@@ -296,12 +236,31 @@ function WelcomePage() {
     const handleActivity = () => setLastActive(Date.now());
     window.addEventListener('mousemove', handleActivity);
     window.addEventListener('keypress', handleActivity);
+
+    // Fechar menu do usuário ao clicar fora
+    const handleClickOutside = (event) => {
+      if (!event.target.closest(`.${styles['user-area']}`)) {
+        setShowUserMenu(false);
+      }
+    };
+    document.addEventListener('click', handleClickOutside);
   
+    // Detecta scroll para mobile header
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      setIsScrolled(scrollTop > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    document.addEventListener('click', handleClickOutside);
+
     return () => {
       window.removeEventListener('mousemove', handleActivity);
       window.removeEventListener('keypress', handleActivity);
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('click', handleClickOutside);
     };
-  }, [navigate]); 
+  }, [navigate]);
 
   useEffect(() => {
 
@@ -318,6 +277,7 @@ function WelcomePage() {
         if (emailStorage) {
           // Token is present, user is authenticated
           console.log('User is authenticated');
+          setUserEmail(emailStorage);
         } else {
             
           console.log('User is not authenticated');
@@ -340,9 +300,25 @@ function WelcomePage() {
     ref.current.scrollBy({ top: 0, left: 300, behavior: 'smooth' });
   };
   
+  // Função para obter a inicial do email
+  const getEmailInitial = (email) => {
+    return email ? email.charAt(0).toUpperCase() : 'U';
+  };
+
+  // Função para fazer logout
+  const handleLogout = () => {
+    localStorage.removeItem('flowersEmail');
+    navigate('/login');
+  };
+
+  // Função para toggle do menu do usuário
+  const toggleUserMenu = () => {
+    setShowUserMenu(!showUserMenu);
+  };
+
   return (
     <div >
-      <nav className={styles['top-nav']}>
+      <nav className={`${styles['top-nav']} ${isScrolled ? styles.scrolled : ''}`}>
         <div className={styles['logo-container']}>
           <img src={logo} className={styles.logo} alt="Logo" />
         </div>
@@ -353,7 +329,25 @@ function WelcomePage() {
           <li>
             <a href="/live">Ao vivo</a>
           </li>
+          <li>
+            <a href="https://wa.me/48984863659" target="_blank" rel="noopener noreferrer">Fale Conosco</a>
+          </li>
         </ul>
+        <div className={styles['user-area']}>
+          <div className={styles['user-avatar']} onClick={toggleUserMenu}>
+            {getEmailInitial(userEmail)}
+          </div>
+          {showUserMenu && (
+            <div className={styles['user-menu']}>
+              <div className={styles['user-menu-item']}>
+                <strong>Email:</strong> {userEmail}
+              </div>
+              <div className={styles['user-menu-item']} onClick={handleLogout}>
+                Logout
+              </div>
+            </div>
+          )}
+        </div>
       </nav>
       <div className={styles['featured-video']}>
         <video
@@ -371,7 +365,7 @@ function WelcomePage() {
           {videos.map((video, index) => (
             <a
               key={index}
-              href={`/youtube/${encodeURIComponent(video.videoUrl)}`}
+              href={`/video/${encodeURIComponent(video.videoUrl)}`}
             >
               <img
                 src={video.thumbnail}
