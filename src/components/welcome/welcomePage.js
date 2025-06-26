@@ -392,7 +392,7 @@ function WelcomePage() {
             </a>
           </li>
           <li>
-            <a href="https://wa.me/48984863659" target="_blank" rel="noopener noreferrer">Fale Conosco</a>
+            <a href="https://wa.me/48996531749" target="_blank" rel="noopener noreferrer">Fale Conosco</a>
           </li>
         </ul>
         <div className={styles['user-area']}>
