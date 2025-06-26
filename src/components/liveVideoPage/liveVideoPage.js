@@ -51,11 +51,11 @@ const LiveVideoPage = () => {
     const extractVideoId = (url) => {
         if (!url) return '';
         
-        // Regex para extrair ID do YouTube de diferentes formatos de URL
-        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        // Regex para extrair ID do YouTube de diferentes formatos de URL, incluindo live
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|live\/)([^#&?]*).*/;
         const match = url.match(regExp);
         
-        return (match && match[2].length === 11) ? match[2] : '';
+        return (match && match[2] && match[2].length === 11) ? match[2] : '';
     };
 
     useEffect(() => {
