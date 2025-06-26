@@ -267,13 +267,21 @@ function WelcomePage() {
 
   useEffect(() => {
     const checkToken = async () => {
+      console.log('=== DEBUG WELCOME PAGE ===');
+      console.log('Verificando token...');
+      console.log('Cookies disponíveis:', document.cookie);
+      
       try {
         const token = localStorage.getItem('flowersEmail');
+        console.log('Token localStorage:', token);
+        
         if (!token) {
+          console.log('❌ Token não encontrado, redirecionando para login');
           navigate('/login');
           return;
         }
 
+        console.log('Fazendo requisição para verify-token...');
         const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/verify-token`, {
           method: 'POST',
           headers: {
@@ -283,11 +291,18 @@ function WelcomePage() {
           body: JSON.stringify({ token }),
         });
 
+        console.log('Response status:', response.status);
+        console.log('Response headers:', response.headers);
+        
         if (response.ok) {
           const data = await response.json();
+          console.log('✅ Token válido, dados:', data);
           setUserEmail(data.email);
           setIsAdmin(data.isAdmin || false); // Verifica se é admin
         } else {
+          console.log('❌ Token inválido, status:', response.status);
+          const errorText = await response.text();
+          console.log('Error response:', errorText);
           localStorage.removeItem('flowersEmail');
           navigate('/login');
         }

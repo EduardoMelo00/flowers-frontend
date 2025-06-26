@@ -36,11 +36,19 @@ function LoginPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    console.log('=== DEBUG FRONTEND LOGIN ===');
+    console.log('Backend URL:', process.env.REACT_APP_BACKEND_URL);
+    console.log('Email:', email);
+    console.log('Enviando login...');
+
     try {
       const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, 
         { email, password },
         { withCredentials: true } // ⭐ CRUCIAL: Enviar cookies/sessões
       );
+
+      console.log('✅ Login response:', response.status);
+      console.log('Response data:', response.data);
 
       if (response.data.firstLogin) {
         // Redirect to change password page
@@ -52,6 +60,10 @@ function LoginPage() {
         navigate('/welcome');
       }
     } catch (error) {
+      console.log('❌ Login error:', error);
+      console.log('Error response:', error.response);
+      console.log('Error message:', error.message);
+      
       if (error.response) {
         setError(error.response.data.error);
       } else {

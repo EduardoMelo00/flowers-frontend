@@ -10,10 +10,13 @@ const withAuth = (ComponentToProtect) => {
       const checkToken = async () => {
         try {
           const response = await fetch(
-            `${process.env.REACT_APP_BACKEND_URL}/api/auth/check-token`,
+            `${process.env.REACT_APP_BACKEND_URL}/verify-token`,
             {
-              method: 'GET',
-              credentials: 'include', // include, *same-origin, omit
+              method: 'POST',
+              credentials: 'include',
+              headers: {
+                'Content-Type': 'application/json',
+              }
             }
           );
 
