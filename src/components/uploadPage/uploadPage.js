@@ -167,7 +167,7 @@ const UploadPage = () => {
             <div className="upload-page">
                 <div className="upload-container">
                     <div className="error-state">
-                        <h2>❌ Erro</h2>
+                        <h2>Erro</h2>
                         <p>{error}</p>
                         <p>Verifique se o link está correto e ainda válido.</p>
                     </div>
@@ -181,7 +181,7 @@ const UploadPage = () => {
             <div className="upload-page">
                 <div className="upload-container">
                     <div className="success-state">
-                        <h2>✅ Upload Concluído!</h2>
+                        <h2>Upload Concluído!</h2>
                         <p>Seu arquivo foi enviado com sucesso.</p>
                         <div className="file-info">
                             <p><strong>Arquivo:</strong> {selectedFile.name}</p>
@@ -198,7 +198,7 @@ const UploadPage = () => {
         <div className="upload-page">
             <div className="upload-container">
                 <div className="upload-header">
-                    <h1>📤 Enviar Arquivo</h1>
+                    <h1>Enviar Arquivo</h1>
                     <h2>{uploadConfig.title}</h2>
                     {uploadConfig.uploaderEmail && (
                         <p className="uploader-email">Para: {uploadConfig.uploaderEmail}</p>
@@ -206,14 +206,14 @@ const UploadPage = () => {
                 </div>
 
                 <div className="upload-info">
-                    <p><strong>⏰ Válido até:</strong> {new Date(uploadConfig.expiresAt).toLocaleString('pt-BR')}</p>
-                    <p><strong>📦 Tamanho máximo:</strong> {formatFileSize(uploadConfig.maxFileSize)}</p>
-                    <p><strong>📄 Tipos aceitos:</strong> {uploadConfig.allowedTypes.join(', ')}</p>
+                    <p><strong>Válido até:</strong> {new Date(uploadConfig.expiresAt).toLocaleString('pt-BR')}</p>
+                    <p><strong>Tamanho máximo:</strong> {formatFileSize(uploadConfig.maxFileSize)}</p>
+                    <p><strong>Tipos aceitos:</strong> {uploadConfig.allowedTypes.join(', ')}</p>
                 </div>
 
                 {error && (
                     <div className="error-message">
-                        <p>❌ {error}</p>
+                        <p>{error}</p>
                     </div>
                 )}
 
@@ -226,7 +226,7 @@ const UploadPage = () => {
                 >
                     {!selectedFile ? (
                         <>
-                            <div className="upload-icon">📁</div>
+                            <div className="upload-icon">📄</div>
                             <p>Arraste e solte seu arquivo aqui</p>
                             <p>ou</p>
                             <input
@@ -253,7 +253,7 @@ const UploadPage = () => {
                                 className="remove-file-btn"
                                 onClick={() => setSelectedFile(null)}
                             >
-                                ❌
+                                ×
                             </button>
                         </div>
                     )}
