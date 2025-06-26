@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import YouTube from 'react-youtube';
 import './liveVideoPage.css';
 
 const LiveVideoPage = () => {
@@ -8,8 +7,6 @@ const LiveVideoPage = () => {
     const [videoId, setVideoId] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState('');
-    const [player, setPlayer] = useState(null);
-    const [isPlaying, setIsPlaying] = useState(true);
 
     useEffect(() => {
         fetchLiveVideoUrl();
@@ -86,24 +83,6 @@ const LiveVideoPage = () => {
         return (match && match[2] && match[2].length === 11) ? match[2] : '';
     };
 
-    // Função chamada quando o player está pronto
-    const onReady = (event) => {
-        setPlayer(event.target);
-    };
-
-    // Função para alternar play/pause
-    const togglePlayPause = () => {
-        if (player) {
-            if (isPlaying) {
-                player.pauseVideo();
-                setIsPlaying(false);
-            } else {
-                player.playVideo();
-                setIsPlaying(true);
-            }
-        }
-    };
-
     useEffect(() => {
         if (showVideo) return;
 
@@ -121,25 +100,6 @@ const LiveVideoPage = () => {
 
         return () => clearInterval(timerId);
     }, [showVideo]);
-
-    const opts = {
-        height: '100%',
-        width: '100%',
-        playerVars: {
-            autoplay: 1,
-            controls: 0, // Remove todos os controles do YouTube
-            disablekb: 1, // Desabilita controles do teclado
-            modestbranding: 1, // Remove logo do YouTube
-            rel: 0, // Não mostra vídeos relacionados
-            fs: 0, // Remove botão de tela cheia
-            showinfo: 0, // Remove informações do vídeo
-            iv_load_policy: 3, // Remove anotações
-            cc_load_policy: 0, // Remove legendas automáticas
-            playsinline: 1, // Para dispositivos móveis
-            enablejsapi: 1, // Habilita API JavaScript
-            origin: window.location.origin // Para segurança
-        },
-    };
 
     const hours = Math.floor(countdown / 3600);
     const minutes = Math.floor((countdown - (hours * 3600)) / 60);
@@ -196,24 +156,16 @@ const LiveVideoPage = () => {
     return (
         <div className="video-container">
             {showVideo && videoId ? (
-                <>
-                    <YouTube 
-                        videoId={videoId} 
-                        opts={opts} 
-                        className="video"
-                        onReady={onReady}
-                    />
-                    {/* Controle personalizado de play/pause */}
-                    <div className="custom-controls">
-                        <button 
-                            className="play-pause-btn"
-                            onClick={togglePlayPause}
-                            title={isPlaying ? 'Pausar' : 'Reproduzir'}
-                        >
-                            {isPlaying ? '⏸️' : '▶️'}
-                        </button>
-                    </div>
-                </>
+                <iframe
+                    width="100%"
+                    height="100%"
+                    src={`https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0&disablekb=1&modestbranding=1&rel=0&fs=0&showinfo=0&iv_load_policy=3&cc_load_policy=0&playsinline=1&autohide=1&theme=dark&color=white&loop=0&enablejsapi=0`}
+                    title="Live Video"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen={false}
+                    className="video"
+                />
             ) : (
                 <h1 className="countdown" style={{ color: 'white' }}>
                     A transmissão começará em breve...
