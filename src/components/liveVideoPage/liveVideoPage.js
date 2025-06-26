@@ -8,9 +8,37 @@ const LiveVideoPage = () => {
     const [videoId, setVideoId] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState('');
+    const [player, setPlayer] = useState(null);
+    const [isPlaying, setIsPlaying] = useState(true);
 
     useEffect(() => {
         fetchLiveVideoUrl();
+        
+        // Bloquear menu de contexto (botão direito)
+        const handleContextMenu = (e) => {
+            e.preventDefault();
+            return false;
+        };
+        
+        // Bloquear teclas de desenvolvedor
+        const handleKeyDown = (e) => {
+            // Bloquear F12, Ctrl+Shift+I, Ctrl+U, etc.
+            if (e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+                (e.ctrlKey && e.key === 'u') ||
+                (e.ctrlKey && e.shiftKey && e.key === 'C')) {
+                e.preventDefault();
+                return false;
+            }
+        };
+        
+        document.addEventListener('contextmenu', handleContextMenu);
+        document.addEventListener('keydown', handleKeyDown);
+        
+        return () => {
+            document.removeEventListener('contextmenu', handleContextMenu);
+            document.removeEventListener('keydown', handleKeyDown);
+        };
     }, []);
 
     const fetchLiveVideoUrl = async () => {
@@ -58,6 +86,24 @@ const LiveVideoPage = () => {
         return (match && match[2] && match[2].length === 11) ? match[2] : '';
     };
 
+    // Função chamada quando o player está pronto
+    const onReady = (event) => {
+        setPlayer(event.target);
+    };
+
+    // Função para alternar play/pause
+    const togglePlayPause = () => {
+        if (player) {
+            if (isPlaying) {
+                player.pauseVideo();
+                setIsPlaying(false);
+            } else {
+                player.playVideo();
+                setIsPlaying(true);
+            }
+        }
+    };
+
     useEffect(() => {
         if (showVideo) return;
 
@@ -81,12 +127,17 @@ const LiveVideoPage = () => {
         width: '100%',
         playerVars: {
             autoplay: 1,
-            controls: 1,
-            disablekb: 1,
-            modestbranding: 1,
-            rel: 0,
-            fs: 0,
-            showinfo: 0
+            controls: 0, // Remove todos os controles do YouTube
+            disablekb: 1, // Desabilita controles do teclado
+            modestbranding: 1, // Remove logo do YouTube
+            rel: 0, // Não mostra vídeos relacionados
+            fs: 0, // Remove botão de tela cheia
+            showinfo: 0, // Remove informações do vídeo
+            iv_load_policy: 3, // Remove anotações
+            cc_load_policy: 0, // Remove legendas automáticas
+            playsinline: 1, // Para dispositivos móveis
+            enablejsapi: 1, // Habilita API JavaScript
+            origin: window.location.origin // Para segurança
         },
     };
 
@@ -145,7 +196,24 @@ const LiveVideoPage = () => {
     return (
         <div className="video-container">
             {showVideo && videoId ? (
-                <YouTube videoId={videoId} opts={opts} className="video"/>
+                <>
+                    <YouTube 
+                        videoId={videoId} 
+                        opts={opts} 
+                        className="video"
+                        onReady={onReady}
+                    />
+                    {/* Controle personalizado de play/pause */}
+                    <div className="custom-controls">
+                        <button 
+                            className="play-pause-btn"
+                            onClick={togglePlayPause}
+                            title={isPlaying ? 'Pausar' : 'Reproduzir'}
+                        >
+                            {isPlaying ? '⏸️' : '▶️'}
+                        </button>
+                    </div>
+                </>
             ) : (
                 <h1 className="countdown" style={{ color: 'white' }}>
                     A transmissão começará em breve...
