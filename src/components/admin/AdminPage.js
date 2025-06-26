@@ -105,11 +105,11 @@ const AdminPage = () => {
   const extractVideoId = (url) => {
     if (!url) return '';
     
-    // Regex para extrair ID do YouTube de diferentes formatos de URL
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    // Regex para extrair ID do YouTube de diferentes formatos de URL, incluindo live
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|live\/)([^#&?]*).*/;
     const match = url.match(regExp);
     
-    return (match && match[2].length === 11) ? match[2] : '';
+    return (match && match[2] && match[2].length === 11) ? match[2] : '';
   };
 
   const getEmbedUrl = (url) => {
@@ -144,7 +144,7 @@ const AdminPage = () => {
               type="url"
               value={liveVideoUrl}
               onChange={(e) => setLiveVideoUrl(e.target.value)}
-              placeholder="https://www.youtube.com/watch?v=..."
+              placeholder="https://www.youtube.com/watch?v=... ou https://www.youtube.com/live/..."
               className={styles.urlInput}
             />
           </div>

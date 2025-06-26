@@ -360,8 +360,8 @@ function WelcomePage() {
       return false;
     }
     
-    // Verificar se é uma URL do YouTube válida
-    const youtubeRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    // Verificar se é uma URL do YouTube válida (incluindo live)
+    const youtubeRegex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|live\/)([^#&?]*).*/;
     const match = url.match(youtubeRegex);
     return match && match[2] && match[2].length === 11;
   };
