@@ -34,6 +34,9 @@ import entrevistaviviane from './entrevistaviviane.jpg';
 import flowerstarde from './flowerstarde.jpeg';
 import thumbmanha from './thumbmanha.jpeg';
 import sabadonoite from './sabadonoite.jpg';
+import dia1_25 from './dia1-25.png';
+import podGabi from './pod-gabi.png';
+import podAline from './pod-aline.png';
 
 
 
@@ -46,11 +49,12 @@ function WelcomePage() {
   const videoRowRef3 = useRef(null);
   const videoRowRef4 = useRef(null);
   const videoRowRef5 = useRef(null);
+  const videoRowRefDestaques = useRef(null);
   const navigate = useNavigate();
 
   const [lastActive, setLastActive] = useState(Date.now());
   const [show2024Section, setShow2024Section] = useState(true);
-  const [showDestaqueSection, setShowDestaqueSection] = useState(false);
+  const [showDestaqueSection, setShowDestaqueSection] = useState(true);
   const [userEmail, setUserEmail] = useState('');
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -225,11 +229,18 @@ function WelcomePage() {
   ];
 
   const videosDestaque = [
-    // Exemplo de vídeo de destaque (adicione ou remova conforme necessário)
-    // {
-    //   thumbnail: flowers2024dia01,
-    //   videoUrl: 'https://flowersvideos.s3.amazonaws.com/FLOWERS+2024+-+CASSIANE+-+CERES+SILVA+-+DIA+01.mp4',
-    // },
+    {
+      thumbnail: dia1_25,
+      videoUrl: 'https://flowersvideos.s3.us-east-1.amazonaws.com/Flowers+Conference+_+Dia+01+__+BROKEN+EDIT.mp4',
+    },
+    {
+      thumbnail: podGabi,
+      videoUrl: 'https://flowersvideos.s3.us-east-1.amazonaws.com/Gabi+Sampaio+-+PodFlowers.mp4',
+    },
+    {
+      thumbnail: podAline,
+      videoUrl: 'https://flowersvideos.s3.us-east-1.amazonaws.com/Aline+Barros+-+PodFlowers.mp4',
+    },
   ];
 
   useEffect(() => {
@@ -426,6 +437,45 @@ function WelcomePage() {
         ></video>
       </div>
 
+      {showDestaqueSection && videosDestaque.length > 0 && (
+        <div className={styles['gallery-container']}>
+          <h2>Destaques</h2>
+          <div className={styles['video-row']} ref={videoRowRefDestaques}>
+            {videosDestaque.map((video, index) => (
+              <a
+                key={index}
+                href={`/video/${encodeURIComponent(video.videoUrl)}`}
+              >
+                <div className={styles['thumbnail-container']}>
+                  <img
+                    src={video.thumbnail}
+                    alt="Video Thumbnail"
+                    className={styles['video-thumbnail']}
+                  />
+                  {video.thumbnail === dia1_25 && (
+                    <div className={styles['thumbnail-overlay']}>
+                      <span className={styles['day-label']}>Dia 1</span>
+                    </div>
+                  )}
+                </div>
+              </a>
+            ))}
+          </div>
+          <div
+            className={styles.arrow + ' ' + styles['arrow-left']}
+            onClick={() => scrollLeft(videoRowRefDestaques)}
+          >
+            &lt;
+          </div>
+          <div
+            className={styles.arrow + ' ' + styles['arrow-right']}
+            onClick={() => scrollRight(videoRowRefDestaques)}
+          >
+            &gt;
+          </div>
+        </div>
+      )}
+
       <div className={styles['gallery-container']}>
         <h2>Top 10</h2>
         <div className={styles['video-row']} ref={videoRowRef1}>
@@ -434,11 +484,13 @@ function WelcomePage() {
               key={index}
               href={`/video/${encodeURIComponent(video.videoUrl)}`}
             >
-              <img
-                src={video.thumbnail}
-                alt="Video Thumbnail"
-                className={styles['video-thumbnail']}
-              />
+              <div className={styles['thumbnail-container']}>
+                <img
+                  src={video.thumbnail}
+                  alt="Video Thumbnail"
+                  className={styles['video-thumbnail']}
+                />
+              </div>
             </a>
           ))}
         </div>
@@ -578,25 +630,7 @@ function WelcomePage() {
         </div>
       </div>
 
-      {showDestaqueSection && videosDestaque.length > 0 && (
-        <div className={styles['gallery-container']}>
-          <h2>Destaques</h2>
-          <div className={styles['video-row']}>
-            {videosDestaque.map((video, index) => (
-              <a
-                key={index}
-                href={`/video/${encodeURIComponent(video.videoUrl)}`}
-              >
-                <img
-                  src={video.thumbnail}
-                  alt="Video Thumbnail"
-                  className={styles['video-thumbnail']}
-                />
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
+
     </div>
   );
 }
