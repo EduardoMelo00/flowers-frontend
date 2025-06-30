@@ -188,10 +188,14 @@ h2{
   padding: 4px 8px;
   border-radius: 4px;
   font-weight: 500;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
   opacity: 0.9;
+  white-space: nowrap;
+  max-width: 120px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .arrow {

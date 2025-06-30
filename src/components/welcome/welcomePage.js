@@ -234,6 +234,22 @@ function WelcomePage() {
       videoUrl: 'https://flowersvideos.s3.us-east-1.amazonaws.com/Flowers+Conference+_+Dia+01+__+BROKEN+EDIT.mp4',
     },
     {
+      thumbnail: dia1_25,
+      videoUrl: 'https://flowersvideos.s3.us-east-1.amazonaws.com/Flowers+Conference+2025+-+manha%CC%83.mp4',
+    },
+    {
+      thumbnail: dia1_25,
+      videoUrl: 'https://flowersvideos.s3.us-east-1.amazonaws.com/Flowers+Conference+_+Dia+03+Manha%CC%83+__+BROKEN.mp4',
+    },
+    {
+      thumbnail: dia1_25,
+      videoUrl: 'https://drive.google.com/file/d/18VwG-84wrNIGpGvzKAJjEjdKdCynwyEo/view',
+    },
+    {
+      thumbnail: dia1_25,
+      videoUrl: 'https://flowersvideos.s3.us-east-1.amazonaws.com/Flowers+Conference+_+Dia+03+Tarde+Parte+02+__+BROKEN.mp4',
+    },
+    {
       thumbnail: podGabi,
       videoUrl: 'https://flowersvideos.s3.us-east-1.amazonaws.com/Gabi+Sampaio+-+PodFlowers.mp4',
     },
@@ -452,9 +468,29 @@ function WelcomePage() {
                     alt="Video Thumbnail"
                     className={styles['video-thumbnail']}
                   />
-                  {video.thumbnail === dia1_25 && (
+                  {video.thumbnail === dia1_25 && video.videoUrl.includes('Dia+01') && (
                     <div className={styles['thumbnail-overlay']}>
                       <span className={styles['day-label']}>Dia 1</span>
+                    </div>
+                  )}
+                  {video.thumbnail === dia1_25 && video.videoUrl.includes('2025') && (
+                    <div className={styles['thumbnail-overlay']}>
+                      <span className={styles['day-label']}>Dia 2</span>
+                    </div>
+                  )}
+                  {video.thumbnail === dia1_25 && video.videoUrl.includes('Dia+03+Manha') && (
+                    <div className={styles['thumbnail-overlay']}>
+                      <span className={styles['day-label']}>Dia 03 - Manhã</span>
+                    </div>
+                  )}
+                  {video.thumbnail === dia1_25 && (video.videoUrl.includes('Dia+03+Tarde') || video.videoUrl.includes('drive.google.com')) && !video.videoUrl.includes('Parte+02') && (
+                    <div className={styles['thumbnail-overlay']}>
+                      <span className={styles['day-label']}>Dia 03 - Tarde Pt1</span>
+                    </div>
+                  )}
+                  {video.thumbnail === dia1_25 && video.videoUrl.includes('Dia+03+Tarde+Parte+02') && (
+                    <div className={styles['thumbnail-overlay']}>
+                      <span className={styles['day-label']}>Dia 03 - Tarde Pt2</span>
                     </div>
                   )}
                 </div>
