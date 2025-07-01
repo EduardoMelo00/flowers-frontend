@@ -35,7 +35,8 @@ function LoginPage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    
+    console.log('🔘 Botão de login clicado!');
     console.log('=== DEBUG FRONTEND LOGIN ===');
     console.log('Backend URL:', process.env.REACT_APP_BACKEND_URL);
     console.log('Email:', email);
@@ -100,7 +101,15 @@ function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <button type="submit">Login</button>
+          <button 
+            type="submit"
+            onClick={(e) => {
+              console.log('🖱️ Botão clicado diretamente!');
+              console.log('Event:', e);
+            }}
+          >
+            Login
+          </button>
         </form>
 
         <div className="help">

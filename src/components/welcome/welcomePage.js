@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './welcomePage.module.css';
 import { encryptUrl } from '../../utils/urlCrypto';
+import videoCache from '../../utils/videoCache';
+import OptimizedImage from './OptimizedImage';
 import flowersdia1 from './flowersdia1.jpeg';
 import logo from './logo.png';
 import thumbnail1 from './thumbnail1.jpg';
@@ -39,9 +41,6 @@ import dia1_25 from './dia1-25.png';
 import podGabi from './pod-gabi.png';
 import podAline from './pod-aline.png';
 
-
-
-    
 import featured from './featured.mp4';
 
 // Hook para Intersection Observer
@@ -55,7 +54,7 @@ const useIntersectionObserver = (ref, options = {}) => {
       setIsIntersecting(entry.isIntersecting);
     }, {
       threshold: 0.1,
-      rootMargin: '50px',
+      rootMargin: '100px', // Aumentado para melhor performance
       ...options
     });
 
@@ -69,30 +68,6 @@ const useIntersectionObserver = (ref, options = {}) => {
   }, [ref, options]);
 
   return isIntersecting;
-};
-
-// Componente de imagem otimizada
-const OptimizedImage = ({ src, alt, className, isVisible, ...props }) => {
-  const [loaded, setLoaded] = useState(false);
-  const [error, setError] = useState(false);
-
-  return (
-    <img
-      src={isVisible ? src : undefined}
-      alt={alt}
-      className={className}
-      loading="lazy"
-      decoding="async"
-      onLoad={() => setLoaded(true)}
-      onError={() => setError(true)}
-      style={{
-        opacity: loaded ? 1 : 0,
-        transition: 'opacity 0.3s ease-in-out',
-        backgroundColor: error ? '#333' : 'transparent'
-      }}
-      {...props}
-    />
-  );
 };
 
 function WelcomePage() {
@@ -130,6 +105,7 @@ function WelcomePage() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [liveVideoUrl, setLiveVideoUrl] = useState('');
   const [hasValidLiveVideo, setHasValidLiveVideo] = useState(false);
+  const [cacheStats, setCacheStats] = useState({ videoCount: 0, totalSizeMB: '0' });
 
   const videos = [
     // Entrevistas 2024
@@ -431,6 +407,55 @@ function WelcomePage() {
     fetchLiveVideoUrl();
   }, [navigate]);
 
+  // Sistema de preload inteligente (DESABILITADO temporariamente)
+  useEffect(() => {
+    const setupVideoPreloading = async () => {
+      try {
+        // Obter estatísticas do cache
+        const stats = videoCache.getCacheStats();
+        setCacheStats(stats);
+        
+        console.log('⚠️ Preload de vídeos desabilitado temporariamente');
+        
+        // PRELOAD DESABILITADO devido a problemas CORS
+        /*
+        // Precarregar vídeos da seção Destaques (prioridade alta)
+        if (isDestaquesVisible && videosDestaque.length > 0) {
+          console.log('🎯 Precarregando vídeos da seção Destaques...');
+          videosDestaque.forEach((video, index) => {
+            const priority = index < 3 ? 'high' : 'medium'; // Primeiros 3 com prioridade alta
+            videoCache.preloadVideo(video.videoUrl, priority);
+          });
+        }
+        
+        // Precarregar Top 10 (prioridade média)
+        if (isTop10Visible && videos.length > 0) {
+          console.log('🎯 Precarregando vídeos do Top 10...');
+          videos.slice(0, 5).forEach(video => {
+            videoCache.preloadVideo(video.videoUrl, 'medium');
+          });
+        }
+        
+        // Precarregar seção 2024 (prioridade baixa)
+        if (is2024Visible && videosFlowers2024.length > 0) {
+          console.log('🎯 Precarregando vídeos de 2024...');
+          videosFlowers2024.slice(0, 3).forEach(video => {
+            videoCache.preloadVideo(video.videoUrl, 'low');
+          });
+        }
+        */
+        
+      } catch (error) {
+        console.error('❌ Erro no sistema de preload:', error);
+      }
+    };
+
+    // Delay para não impactar o carregamento inicial
+    const timer = setTimeout(setupVideoPreloading, 2000);
+    
+    return () => clearTimeout(timer);
+  }, [isDestaquesVisible, isTop10Visible, is2024Visible, videosDestaque, videos, videosFlowers2024]);
+
   const scrollLeft = (ref) => {
     ref.current.scrollBy({ top: 0, left: -300, behavior: 'smooth' });
   };
@@ -524,6 +549,23 @@ function WelcomePage() {
           onLoadStart={() => console.log('Video started loading')}
           onCanPlay={() => console.log('Video can play')}
         ></video>
+        
+        {/* Indicador de Cache (apenas para desenvolvimento) */}
+        {process.env.NODE_ENV === 'development' && (
+          <div style={{
+            position: 'absolute',
+            bottom: '20px',
+            right: '20px',
+            background: 'rgba(0,0,0,0.8)',
+            color: 'white',
+            padding: '10px',
+            borderRadius: '5px',
+            fontSize: '12px',
+            zIndex: 1000
+          }}>
+            📊 Cache: {cacheStats.videoCount} vídeos ({cacheStats.totalSizeMB}MB)
+          </div>
+        )}
       </div>
 
       {showDestaqueSection && videosDestaque.length > 0 && (
@@ -540,7 +582,7 @@ function WelcomePage() {
                     src={video.thumbnail}
                     alt="Video Thumbnail"
                     className={styles['video-thumbnail']}
-                    isVisible={isDestaquesVisible}
+                    priority={index < 3} // Primeiros 3 com prioridade
                   />
                   {video.thumbnail === dia1_25 && video.videoUrl.includes('Dia+01') && (
                     <div className={styles['thumbnail-overlay']}>
@@ -599,7 +641,6 @@ function WelcomePage() {
                   src={video.thumbnail}
                   alt="Video Thumbnail"
                   className={styles['video-thumbnail']}
-                  isVisible={isTop10Visible}
                 />
               </div>
             </a>
@@ -629,12 +670,10 @@ function WelcomePage() {
               href={`/video/${encryptUrl(video.videoUrl)}`}
             >
               <div className={styles['thumbnail-container']}>
-                <img
+                <OptimizedImage
                   src={video.thumbnail}
                   alt="Video Thumbnail"
                   className={styles['video-thumbnail']}
-                  loading="lazy"
-                  decoding="async"
                 />
               </div>
             </a>
@@ -663,7 +702,7 @@ function WelcomePage() {
               key={index}
               href={`/video/${encryptUrl(video.videoUrl)}`}
             >
-              <img
+              <OptimizedImage
                 src={video.thumbnail}
                 alt="Video Thumbnail"
                 className={styles['video-thumbnail']}
@@ -693,7 +732,7 @@ function WelcomePage() {
               key={index}
               href={`/video/${encryptUrl(video.videoUrl)}`}
             >
-              <img
+              <OptimizedImage
                 src={video.thumbnail}
                 alt="Video Thumbnail"
                 className={styles['video-thumbnail']}
@@ -723,7 +762,7 @@ function WelcomePage() {
               key={index}
               href={`/video/${encryptUrl(video.videoUrl)}`}
             >
-              <img
+              <OptimizedImage
                 src={video.thumbnail}
                 alt="Video Thumbnail"
                 className={styles['video-thumbnail']}

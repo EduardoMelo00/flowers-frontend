@@ -48,6 +48,11 @@ export const encryptUrl = (url) => {
 
 // Descriptografar URL
 export const decryptUrl = (encryptedUrl) => {
+  if (!encryptedUrl || encryptedUrl.trim() === '') {
+    console.error('❌ URL criptografada está vazia');
+    return '';
+  }
+
   try {
     // Decodificar Base64
     const decoded = base64UrlDecode(encryptedUrl);
@@ -56,26 +61,49 @@ export const decryptUrl = (encryptedUrl) => {
     const decrypted = xorCrypt(decoded, SECRET_KEY);
     
     // Separar URL do timestamp
-    const [url, timestamp] = decrypted.split('|');
+    const parts = decrypted.split('|');
+    
+    if (parts.length < 2) {
+      // Pode ser uma URL no formato antigo
+      return decrypted;
+    }
+    
+    const [url, timestamp] = parts;
     
     // Verificar se o timestamp não é muito antigo (opcional - 24 horas)
     const now = Date.now();
     const urlTimestamp = parseInt(timestamp);
     const maxAge = 24 * 60 * 60 * 1000; // 24 horas em milliseconds
     
+    if (isNaN(urlTimestamp)) {
+      return url;
+    }
+    
     if (now - urlTimestamp > maxAge) {
-      console.warn('URL expirada');
-      // Ainda retorna a URL, mas poderia bloquear se necessário
+      console.warn('⚠️ URL expirada, mas permitindo acesso');
     }
     
     return url;
+    
   } catch (error) {
-    console.error('Erro ao descriptografar URL:', error);
-    // Fallback para decodificação simples
+    console.error('❌ Erro na descriptografia:', error.message);
+    
+    // Fallback 1: Tentar decodificação Base64 simples
     try {
-      return atob(encryptedUrl);
-    } catch (fallbackError) {
-      return decodeURIComponent(encryptedUrl);
+      const fallback1 = atob(encryptedUrl);
+      return fallback1;
+    } catch (fallbackError1) {
+      
+      // Fallback 2: Tentar decodificação de URL
+      try {
+        const fallback2 = decodeURIComponent(encryptedUrl);
+        return fallback2;
+      } catch (fallbackError2) {
+        
+        // Fallback 3: Retornar a string original
+        console.log('🔄 Usando string original como último recurso');
+        return encryptedUrl;
+      }
     }
   }
 };

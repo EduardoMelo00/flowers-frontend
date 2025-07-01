@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from  './videoPage.css';
 import { decryptUrl, isGoogleDriveUrl, getSecureGoogleDriveEmbedUrl } from '../../utils/urlCrypto';
+import videoCache from '../../utils/videoCache';
 import '../../utils/securityProtection';
 
 
@@ -9,12 +10,64 @@ const VideoPlayerPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   
+  // Estados para cache e loading
+  const [cachedVideoUrl, setCachedVideoUrl] = useState(null);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  
   // Descriptografar a URL
   const decodedVideoUrl = decryptUrl(id);
 
   // Verificar se é uma URL do Google Drive
   const isGoogleDrive = isGoogleDriveUrl(decodedVideoUrl);
   const googleDriveEmbedUrl = isGoogleDrive ? getSecureGoogleDriveEmbedUrl(decodedVideoUrl) : null;
+
+  // Verificar se a URL é válida
+  const isValidUrl = (url) => {
+    if (!url || url.trim() === '') return false;
+    try {
+      new URL(url);
+      return true;
+    } catch {
+      return url.startsWith('http') || url.includes('amazonaws.com') || url.includes('drive.google.com');
+    }
+  };
+
+  const finalUrl = isGoogleDrive ? googleDriveEmbedUrl : decodedVideoUrl;
+  const isUrlValid = isValidUrl(finalUrl);
+
+  // Se URL inválida, mostrar erro
+  useEffect(() => {
+    if (!isUrlValid) {
+      setError('URL do vídeo inválida ou corrompida');
+      setIsLoading(false);
+    }
+  }, [isUrlValid]);
+
+  // Sistema simplificado de carregamento de vídeo
+  useEffect(() => {
+    const loadVideo = async () => {
+      // Para Google Drive, não fazer nada - será tratado pelo iframe
+      if (isGoogleDrive) {
+        setIsLoading(false);
+        return;
+      }
+
+      // Verificar se URL é válida
+      if (!decodedVideoUrl || !isUrlValid) {
+        setError('URL do vídeo inválida');
+        setIsLoading(false);
+        return;
+      }
+      
+      // Usar URL diretamente (cache desabilitado temporariamente)
+      setCachedVideoUrl(decodedVideoUrl);
+      setIsLoading(false);
+    };
+
+    loadVideo();
+  }, [decodedVideoUrl, isGoogleDrive, isUrlValid]);
 
   // Adicionar proteções extras contra download
   useEffect(() => {
@@ -358,23 +411,138 @@ const VideoPlayerPage = () => {
           />
         </div>
       ) : (
-        <video 
-          width="1024" 
-          height="680" 
-          controls 
-          controlsList="nodownload noremoteplayback nofullscreen" 
-          onContextMenu={(e) => e.preventDefault()} 
-          autoPlay 
-          muted 
-          onError={(e) => console.error('Video error:', e)}
-          style={{ 
-            userSelect: 'none',
-            WebkitUserSelect: 'none'
-          }}
-        >
-          <source src={decodedVideoUrl} type="video/mp4"/>
-          Your browser does not support the video tag.
-        </video>
+        <div style={{ 
+          position: 'relative', 
+          width: '100%', 
+          maxWidth: '1024px', 
+          height: '680px', 
+          margin: '0 auto',
+          backgroundColor: 'black',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          {/* Indicador de carregamento */}
+          {isLoading && (
+            <div style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              textAlign: 'center',
+              color: 'white',
+              zIndex: 1000
+            }}>
+              <div style={{
+                width: '60px',
+                height: '60px',
+                border: '4px solid rgba(255,255,255,0.3)',
+                borderTop: '4px solid #667eea',
+                borderRadius: '50%',
+                animation: 'spin 1s linear infinite',
+                marginBottom: '20px'
+              }}></div>
+              <div style={{ fontSize: '16px', marginBottom: '10px' }}>
+                Carregando vídeo...
+              </div>
+              <div style={{ fontSize: '14px', color: '#ccc' }}>
+                {loadingProgress > 0 && `${Math.round(loadingProgress)}%`}
+              </div>
+              <div style={{
+                width: '200px',
+                height: '4px',
+                backgroundColor: 'rgba(255,255,255,0.3)',
+                borderRadius: '2px',
+                overflow: 'hidden',
+                margin: '10px auto'
+              }}>
+                <div style={{
+                  width: `${loadingProgress}%`,
+                  height: '100%',
+                  backgroundColor: '#667eea',
+                  transition: 'width 0.3s ease'
+                }}></div>
+              </div>
+            </div>
+          )}
+
+          {/* Indicador de erro */}
+          {error && (
+            <div style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              textAlign: 'center',
+              color: 'white',
+              zIndex: 1000
+            }}>
+              <div style={{ fontSize: '18px', marginBottom: '10px', color: '#ff6b6b' }}>
+                ⚠️ {error}
+              </div>
+              <button 
+                onClick={() => window.location.reload()}
+                style={{
+                  background: '#667eea',
+                  color: 'white',
+                  border: 'none',
+                  padding: '10px 20px',
+                  borderRadius: '5px',
+                  cursor: 'pointer'
+                }}
+              >
+                Tentar novamente
+              </button>
+            </div>
+          )}
+
+          {/* Vídeo */}
+          {(cachedVideoUrl || (!isLoading && !error)) && (
+            <video 
+              width="1024" 
+              height="680" 
+              controls 
+              controlsList="nodownload noremoteplayback nofullscreen" 
+              onContextMenu={(e) => e.preventDefault()} 
+              autoPlay 
+              muted 
+              onError={(e) => {
+                console.error('Video error:', e);
+                setError('Erro ao reproduzir vídeo');
+              }}
+              onLoadStart={() => console.log('🎬 Vídeo iniciando carregamento')}
+              onCanPlay={() => console.log('✅ Vídeo pronto para reproduzir')}
+              onProgress={(e) => {
+                const buffered = e.target.buffered;
+                if (buffered.length > 0) {
+                  const bufferedEnd = buffered.end(buffered.length - 1);
+                  const duration = e.target.duration;
+                  if (duration > 0) {
+                    const bufferedPercent = (bufferedEnd / duration) * 100;
+                    console.log(`📊 Buffer: ${bufferedPercent.toFixed(1)}%`);
+                  }
+                }
+              }}
+              style={{ 
+                userSelect: 'none',
+                WebkitUserSelect: 'none',
+                width: '100%',
+                height: '100%'
+              }}
+            >
+              <source src={cachedVideoUrl || decodedVideoUrl} type="video/mp4"/>
+              Your browser does not support the video tag.
+            </video>
+          )}
+
+          {/* CSS para animação de loading */}
+          <style jsx>{`
+            @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+          `}</style>
+        </div>
       )}
     </div>
   );

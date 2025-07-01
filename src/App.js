@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './components/loginPage/loginPage.js';
 import EmailSentPage from './components/loginPage/EmailSentPage.js';
@@ -15,10 +15,20 @@ import AdminLoginPage from './components/loginAdmin/AdminLoginPage.js';
 import AdminPage from './components/admin/AdminPage.js';
 import AddUserPage from './components/admin/AddUserPage.js';
 import UploadPage from './components/uploadPage/uploadPage.js';
+import { autoCleanCache, clearAllCache } from './utils/clearCache.js';
 
 
 
 function App() {
+  // Limpar cache automaticamente na inicialização
+  useEffect(() => {
+    autoCleanCache();
+    
+    // Disponibilizar função global para debug
+    window.clearFlowersCache = clearAllCache;
+    console.log('🧹 Para limpar cache manualmente, execute: clearFlowersCache()');
+  }, []);
+
   return (
     <Router>
       <Routes>
