@@ -75,3 +75,195 @@ iframe[src*="drive.google.com"]::-webkit-scrollbar {
 .drive-overlay:hover {
     background: rgba(0, 0, 0, 0.9);
 }
+
+/* PROTEÇÕES ESPECÍFICAS PARA MOBILE E DESKTOP */
+
+/* Proteção principal do botão "abrir em nova aba" */
+.protection-overlay-main {
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    touch-action: none !important;
+    -webkit-user-drag: none !important;
+    -moz-user-drag: none !important;
+    user-drag: none !important;
+}
+
+/* Proteção expandida para mobile */
+.protection-overlay-mobile {
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    touch-action: none !important;
+    -webkit-user-drag: none !important;
+    -moz-user-drag: none !important;
+    user-drag: none !important;
+}
+
+/* Bloquear todos os gestos de toque no iframe */
+iframe[src*="drive.google.com"] {
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    touch-action: manipulation !important;
+    -webkit-user-drag: none !important;
+    -moz-user-drag: none !important;
+    user-drag: none !important;
+    pointer-events: auto !important;
+}
+
+/* Proteções específicas para dispositivos móveis */
+@media (max-width: 768px) {
+    .video-live {
+        padding: 10px;
+        height: 100vh;
+        overflow: hidden;
+        -webkit-overflow-scrolling: touch;
+        touch-action: manipulation;
+    }
+    
+    /* Aumentar área de proteção no mobile */
+    .protection-overlay-main {
+        width: clamp(100px, 20%, 180px) !important;
+        height: clamp(60px, 15%, 100px) !important;
+    }
+    
+    .protection-overlay-mobile {
+        width: clamp(140px, 30%, 220px) !important;
+        height: clamp(80px, 18%, 120px) !important;
+    }
+    
+    /* Container do vídeo responsivo */
+    .video-live > div {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 16/9 !important;
+    }
+    
+    iframe {
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 300px !important;
+    }
+}
+
+/* Proteções específicas para tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .protection-overlay-main {
+        width: clamp(90px, 18%, 160px) !important;
+        height: clamp(55px, 13%, 90px) !important;
+    }
+    
+    .protection-overlay-mobile {
+        width: clamp(130px, 28%, 210px) !important;
+        height: clamp(70px, 16%, 110px) !important;
+    }
+}
+
+/* Bloquear seleção de texto em toda a página */
+.video-live, .video-live * {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Tentar bloquear o menu de contexto do iframe */
+iframe {
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+}
+
+/* Proteção contra zoom por pinça */
+.video-live {
+    touch-action: manipulation !important;
+    -ms-touch-action: manipulation !important;
+}
+
+/* Bloquear highlight de toque em elementos */
+* {
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+/* BOTÃO VOLTAR */
+.back-button-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 3000;
+}
+
+.back-button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: white !important;
+    border: none !important;
+    padding: 12px 20px !important;
+    border-radius: 25px !important;
+    cursor: pointer !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+    transition: all 0.3s ease !important;
+    font-family: 'Arial', sans-serif !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+.back-button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4) !important;
+}
+
+.back-button:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3) !important;
+}
+
+/* Responsividade para o botão */
+@media (max-width: 768px) {
+    .back-button-container {
+        top: 10px;
+        left: 10px;
+    }
+    
+    .back-button {
+        padding: 10px 16px !important;
+        font-size: 12px !important;
+        border-radius: 20px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .back-button-container {
+        top: 5px;
+        left: 5px;
+    }
+    
+    .back-button {
+        padding: 8px 12px !important;
+        font-size: 11px !important;
+        border-radius: 18px !important;
+        gap: 4px !important;
+    }
+}

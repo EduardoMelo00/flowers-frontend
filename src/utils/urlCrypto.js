@@ -85,13 +85,37 @@ export const isGoogleDriveUrl = (url) => {
   return url && url.includes('drive.google.com');
 };
 
-// Função para converter URL do Google Drive para embed com proteções
+// Função para converter URL do Google Drive para embed com proteções máximas
 export const getSecureGoogleDriveEmbedUrl = (url) => {
   const match = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
   if (match) {
     const fileId = match[1];
-    // Usar parâmetros mais restritivos para esconder controles
-    return `https://drive.google.com/file/d/${fileId}/preview?usp=embed_facebook&rm=minimal&chrome=false&embedded=true&widget=true`;
+    // Usar parâmetros ultra-restritivos para esconder todos os controles possíveis
+    const params = new URLSearchParams({
+      'usp': 'embed_facebook',
+      'rm': 'minimal',
+      'chrome': 'false',
+      'embedded': 'true',
+      'widget': 'true',
+      'ddrp': '1',
+      'hl': 'pt-BR',
+      'authuser': '0',
+      'nonce': Date.now().toString(),
+      'single': 'true',
+      'gd': 'true',
+      'headers': 'false',
+      'controls': 'false',
+      'modestbranding': '1',
+      'showinfo': '0',
+      'rel': '0',
+      'fs': '0',
+      'iv_load_policy': '3',
+      'disablekb': '1',
+      'playsinline': '1',
+      'origin': window.location.origin
+    });
+    
+    return `https://drive.google.com/file/d/${fileId}/preview?${params.toString()}`;
   }
   return null;
 }; 
