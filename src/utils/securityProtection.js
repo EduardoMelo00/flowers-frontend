@@ -319,7 +319,7 @@ class SecurityProtection {
   }
 }
 
-// Instância global
-window.securityProtection = new SecurityProtection();
+// Instância global - DESABILITADA TEMPORARIAMENTE
+// window.securityProtection = new SecurityProtection();
 
 export default SecurityProtection; 
