@@ -130,6 +130,15 @@ const AdminPage = () => {
       </header>
 
       <div className={styles.content}>
+        <div className={styles.quickActions}>
+          <button 
+            className={styles.actionButton}
+            onClick={() => navigate('/admin/add-user')}
+          >
+            👤 Cadastrar Usuário
+          </button>
+        </div>
+
         <div className={styles.section}>
           <h2>Gerenciar Vídeo Ao Vivo</h2>
           <p className={styles.description}>

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './welcomePage.module.css';
+import { encryptUrl } from '../../utils/urlCrypto';
 import flowersdia1 from './flowersdia1.jpeg';
 import logo from './logo.png';
 import thumbnail1 from './thumbnail1.jpg';
@@ -43,6 +44,57 @@ import podAline from './pod-aline.png';
     
 import featured from './featured.mp4';
 
+// Hook para Intersection Observer
+const useIntersectionObserver = (ref, options = {}) => {
+  const [isIntersecting, setIsIntersecting] = useState(false);
+
+  useEffect(() => {
+    if (!ref.current) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsIntersecting(entry.isIntersecting);
+    }, {
+      threshold: 0.1,
+      rootMargin: '50px',
+      ...options
+    });
+
+    observer.observe(ref.current);
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [ref, options]);
+
+  return isIntersecting;
+};
+
+// Componente de imagem otimizada
+const OptimizedImage = ({ src, alt, className, isVisible, ...props }) => {
+  const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(false);
+
+  return (
+    <img
+      src={isVisible ? src : undefined}
+      alt={alt}
+      className={className}
+      loading="lazy"
+      decoding="async"
+      onLoad={() => setLoaded(true)}
+      onError={() => setError(true)}
+      style={{
+        opacity: loaded ? 1 : 0,
+        transition: 'opacity 0.3s ease-in-out',
+        backgroundColor: error ? '#333' : 'transparent'
+      }}
+      {...props}
+    />
+  );
+};
+
 function WelcomePage() {
   const videoRowRef1 = useRef(null);
   const videoRowRef2 = useRef(null);
@@ -50,6 +102,23 @@ function WelcomePage() {
   const videoRowRef4 = useRef(null);
   const videoRowRef5 = useRef(null);
   const videoRowRefDestaques = useRef(null);
+  
+  // Refs para Intersection Observer
+  const destaquesRef = useRef(null);
+  const top10Ref = useRef(null);
+  const section2024Ref = useRef(null);
+  const section2023Ref = useRef(null);
+  const section2022Ref = useRef(null);
+  const section2021Ref = useRef(null);
+  
+  // Intersection Observer hooks
+  const isDestaquesVisible = useIntersectionObserver(destaquesRef);
+  const isTop10Visible = useIntersectionObserver(top10Ref);
+  const is2024Visible = useIntersectionObserver(section2024Ref);
+  const is2023Visible = useIntersectionObserver(section2023Ref);
+  const is2022Visible = useIntersectionObserver(section2022Ref);
+  const is2021Visible = useIntersectionObserver(section2021Ref);
+  
   const navigate = useNavigate();
 
   const [lastActive, setLastActive] = useState(Date.now());
@@ -450,23 +519,28 @@ function WelcomePage() {
           muted
           loop
           className={styles['video-player']}
+          preload="metadata"
+          playsInline
+          onLoadStart={() => console.log('Video started loading')}
+          onCanPlay={() => console.log('Video can play')}
         ></video>
       </div>
 
       {showDestaqueSection && videosDestaque.length > 0 && (
-        <div className={styles['gallery-container']}>
+        <div className={styles['gallery-container']} ref={destaquesRef}>
           <h2>Destaques</h2>
           <div className={styles['video-row']} ref={videoRowRefDestaques}>
             {videosDestaque.map((video, index) => (
               <a
                 key={index}
-                href={`/video/${encodeURIComponent(video.videoUrl)}`}
+                href={`/video/${encryptUrl(video.videoUrl)}`}
               >
                 <div className={styles['thumbnail-container']}>
-                  <img
+                  <OptimizedImage
                     src={video.thumbnail}
                     alt="Video Thumbnail"
                     className={styles['video-thumbnail']}
+                    isVisible={isDestaquesVisible}
                   />
                   {video.thumbnail === dia1_25 && video.videoUrl.includes('Dia+01') && (
                     <div className={styles['thumbnail-overlay']}>
@@ -512,19 +586,20 @@ function WelcomePage() {
         </div>
       )}
 
-      <div className={styles['gallery-container']}>
+      <div className={styles['gallery-container']} ref={top10Ref}>
         <h2>Top 10</h2>
         <div className={styles['video-row']} ref={videoRowRef1}>
           {videos.map((video, index) => (
             <a
               key={index}
-              href={`/video/${encodeURIComponent(video.videoUrl)}`}
+              href={`/video/${encryptUrl(video.videoUrl)}`}
             >
               <div className={styles['thumbnail-container']}>
-                <img
+                <OptimizedImage
                   src={video.thumbnail}
                   alt="Video Thumbnail"
                   className={styles['video-thumbnail']}
+                  isVisible={isTop10Visible}
                 />
               </div>
             </a>
@@ -549,16 +624,20 @@ function WelcomePage() {
           <h2>2024</h2>
           <div className={styles['video-row']} ref={videoRowRef4}>
             {videosFlowers2024.map((video, index) => (
-              <a
-                key={index}
-                href={`/video/${encodeURIComponent(video.videoUrl)}`}
-              >
+                          <a
+              key={index}
+              href={`/video/${encryptUrl(video.videoUrl)}`}
+            >
+              <div className={styles['thumbnail-container']}>
                 <img
                   src={video.thumbnail}
                   alt="Video Thumbnail"
                   className={styles['video-thumbnail']}
+                  loading="lazy"
+                  decoding="async"
                 />
-              </a>
+              </div>
+            </a>
             ))}
           </div>
           <div
@@ -582,7 +661,7 @@ function WelcomePage() {
           {videosFlowers2023.map((video, index) => (
             <a
               key={index}
-              href={`/video/${encodeURIComponent(video.videoUrl)}`}
+              href={`/video/${encryptUrl(video.videoUrl)}`}
             >
               <img
                 src={video.thumbnail}
@@ -612,7 +691,7 @@ function WelcomePage() {
           {videosFlowers2022.map((video, index) => (
             <a
               key={index}
-              href={`/video/${encodeURIComponent(video.videoUrl)}`}
+              href={`/video/${encryptUrl(video.videoUrl)}`}
             >
               <img
                 src={video.thumbnail}
@@ -642,7 +721,7 @@ function WelcomePage() {
           {videosFlowers2021.map((video, index) => (
             <a
               key={index}
-              href={`/video/${encodeURIComponent(video.videoUrl)}`}
+              href={`/video/${encryptUrl(video.videoUrl)}`}
             >
               <img
                 src={video.thumbnail}

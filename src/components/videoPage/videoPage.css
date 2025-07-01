@@ -5,8 +5,73 @@
     height: 100vh;
     padding-top: 50px;
     background-color: black;
+    /* Proteções contra seleção e arrastar */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
 }
 
 iframe {
     box-shadow: 0px 10px 18px 0px rgba(0, 0, 0, 0.1);
+    /* Proteções adicionais para iframe */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    pointer-events: auto;
+}
+
+video {
+    /* Proteções para vídeo */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+/* Proteções globais para a página de vídeo */
+.video-live * {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
+}
+
+/* Tentar esconder elementos específicos do Google Drive (pode não funcionar devido ao CORS) */
+iframe[src*="drive.google.com"] {
+    /* Tentar esconder scrollbars */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+iframe[src*="drive.google.com"]::-webkit-scrollbar {
+    display: none;
+}
+
+/* Overlay personalizado para cobrir botões do Google Drive */
+.drive-overlay {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    pointer-events: auto;
+    z-index: 15;
+}
+
+.drive-overlay:hover {
+    background: rgba(0, 0, 0, 0.9);
 }

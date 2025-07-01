@@ -13,6 +13,7 @@ import YoutubePage from './components/youtubePage/youtubePage.js';
 import AdminLogin from './components/loginAdmin/AdminLogin.js';
 import AdminLoginPage from './components/loginAdmin/AdminLoginPage.js';
 import AdminPage from './components/admin/AdminPage.js';
+import AddUserPage from './components/admin/AddUserPage.js';
 import UploadPage from './components/uploadPage/uploadPage.js';
 
 
@@ -35,6 +36,7 @@ function App() {
         <Route path="/login-admin" element={<AdminLogin />} />
         <Route path="/login-admin-page" element={<AdminLoginPage />} />
         <Route path="/admin" element={<AdminPage />} />
+        <Route path="/admin/add-user" element={<AddUserPage />} />
         <Route path="/upload/:uploadId" element={<UploadPage />} />
 
         
