@@ -13,6 +13,12 @@ class SecurityProtection {
   init() {
     if (this.isInitialized) return;
     
+    // Não ativar proteção na página de login
+    if (window.location.pathname === '/login') {
+      console.log('🔓 Proteção de segurança DESABILITADA na página de login');
+      return;
+    }
+    
     this.setupEventListeners();
     this.setupVisibilityMonitoring();
     this.setupUrlMonitoring();
@@ -105,6 +111,11 @@ class SecurityProtection {
   }
 
   blockDangerousKeys(e) {
+    // Não bloquear teclas na página de login
+    if (window.location.pathname === '/login') {
+      return;
+    }
+    
     const dangerousKeys = [
       'F12',
       { ctrl: true, shift: true, key: 'I' }, // Dev Tools
@@ -166,6 +177,11 @@ class SecurityProtection {
   }
 
   monitorClicks(e) {
+    // Não monitorar cliques na página de login
+    if (window.location.pathname === '/login') {
+      return;
+    }
+    
     // Detectar cliques suspeitos (área dos botões do Google Drive)
     const rect = e.target.getBoundingClientRect();
     const clickX = e.clientX;
@@ -255,6 +271,12 @@ class SecurityProtection {
   }
 
   triggerSecurityAlert() {
+    // Não disparar alertas na página de login
+    if (window.location.pathname === '/login') {
+      console.log('🔓 Alerta de segurança ignorado na página de login');
+      return;
+    }
+    
     console.error('🚨 ALERTA DE SEGURANÇA: Muitas violações detectadas!');
     
     // Opcional: redirecionar para página de aviso
@@ -265,6 +287,12 @@ class SecurityProtection {
   }
 
   reportSecurityViolation() {
+    // Não reportar violações na página de login
+    if (window.location.pathname === '/login') {
+      console.log('🔒 Proteção desabilitada na página de login');
+      return;
+    }
+    
     try {
       fetch('/api/security-violation', {
         method: 'POST',
