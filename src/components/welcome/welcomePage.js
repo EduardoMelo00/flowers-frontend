@@ -276,11 +276,11 @@ function WelcomePage() {
   const videosDestaque = [
     {
       thumbnail: dia1_25,
-      videoUrl: 'https://flowersvideos.s3.us-east-1.amazonaws.com/Flowers+Conference+_+Dia+01+__+BROKEN+EDIT.mp4',
+      videoUrl: 'https://drive.google.com/file/d/1T_qXOdejPbQlnqWEM3I9pbsvhV1ryZiA/view',
     },
     {
       thumbnail: dia1_25,
-      videoUrl: 'https://flowersvideos.s3.us-east-1.amazonaws.com/Flowers+Conference+2025+-+manha%CC%83.mp4',
+      videoUrl: 'https://drive.google.com/file/d/1uut_Zd8ts73w5GGhybsy8GLqoQolDr27/view',
     },
     {
       thumbnail: dia1_25,
@@ -293,6 +293,10 @@ function WelcomePage() {
     {
       thumbnail: dia1_25,
       videoUrl: 'https://flowersvideos.s3.us-east-1.amazonaws.com/Flowers+Conference+_+Dia+03+Tarde+Parte+02+__+BROKEN.mp4',
+    },
+    {
+      thumbnail: dia1_25,
+      videoUrl: 'https://drive.google.com/file/d/17ydVWiTg64rJNWJo-KOsv89JahQb8zbT/view',
     },
     {
       thumbnail: podGabi,
@@ -584,12 +588,12 @@ function WelcomePage() {
                     className={styles['video-thumbnail']}
                     priority={index < 3} // Primeiros 3 com prioridade
                   />
-                  {video.thumbnail === dia1_25 && video.videoUrl.includes('Dia+01') && (
+                  {video.thumbnail === dia1_25 && video.videoUrl.includes('1T_qXOdejPbQlnqWEM3I9pbsvhV1ryZiA') && (
                     <div className={styles['thumbnail-overlay']}>
                       <span className={styles['day-label']}>Dia 1</span>
                     </div>
                   )}
-                  {video.thumbnail === dia1_25 && video.videoUrl.includes('2025') && (
+                  {video.thumbnail === dia1_25 && video.videoUrl.includes('1uut_Zd8ts73w5GGhybsy8GLqoQolDr27') && (
                     <div className={styles['thumbnail-overlay']}>
                       <span className={styles['day-label']}>Dia 2</span>
                     </div>
@@ -599,7 +603,7 @@ function WelcomePage() {
                       <span className={styles['day-label']}>Dia 03 - Manhã</span>
                     </div>
                   )}
-                  {video.thumbnail === dia1_25 && (video.videoUrl.includes('Dia+03+Tarde') || video.videoUrl.includes('drive.google.com')) && !video.videoUrl.includes('Parte+02') && (
+                  {video.thumbnail === dia1_25 && video.videoUrl.includes('18VwG-84wrNIGpGvzKAJjEjdKdCynwyEo') && (
                     <div className={styles['thumbnail-overlay']}>
                       <span className={styles['day-label']}>Dia 03 - Tarde Pt1</span>
                     </div>
@@ -607,6 +611,11 @@ function WelcomePage() {
                   {video.thumbnail === dia1_25 && video.videoUrl.includes('Dia+03+Tarde+Parte+02') && (
                     <div className={styles['thumbnail-overlay']}>
                       <span className={styles['day-label']}>Dia 03 - Tarde Pt2</span>
+                    </div>
+                  )}
+                  {video.thumbnail === dia1_25 && video.videoUrl.includes('17ydVWiTg64rJNWJo-KOsv89JahQb8zbT') && (
+                    <div className={styles['thumbnail-overlay']}>
+                      <span className={styles['day-label']}>Dia 03 - Noite</span>
                     </div>
                   )}
                 </div>
