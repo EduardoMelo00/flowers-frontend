@@ -300,7 +300,7 @@ function WelcomePage() {
     },
     {
       thumbnail: podGabi,
-      videoUrl: 'https://flowersvideos.s3.us-east-1.amazonaws.com/Gabi+Sampaio+-+PodFlowers.mp4',
+      videoUrl: 'https://drive.google.com/file/d/1GelBMADqYPtezv8A0J8idpanFXOHgFRb/view',
     },
     {
       thumbnail: podAline,
